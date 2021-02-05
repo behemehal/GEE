@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'login.dart';
 import 'register.dart';
 import 'profil.dart';
+import 'home_page.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -48,7 +49,7 @@ class SplashScreenState extends State<SplashScreen>
       body: Center(
         child: Padding(
           padding: EdgeInsets.only(
-              top: (MediaQuery.of(context).size.height / 4) - 30),
+              top: (MediaQuery.of(context).size.height / 4) - 50),
           child: Column(
             children: [
               SlideTransition(
@@ -150,6 +151,17 @@ class SplashScreenState extends State<SplashScreen>
                   );
                 },
                 child: Text("Profil Sayfasına Git"),
+              ),
+              TextButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => HomePage(),
+                    ),
+                  );
+                },
+                child: Text("Home Sayfası"),
               )
             ],
           ),
