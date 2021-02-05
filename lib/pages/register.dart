@@ -49,7 +49,7 @@ class RegisterPageState extends State<RegisterPage> {
                 controller:
                     kullaniciSifreDogrulayici, //Kullanıcının yazdığı şifreyi kontrol etmek için bunu kullanıyoruz
                 decoration:
-                    InputDecoration(labelText: "Kullanıcı Şifresi Doğrula"),
+                    InputDecoration(labelText: "Kullanıcı Şifresini Doğrula"),
               ),
               Text(
                   statusText), //Kullanıcının Mail ve ya şifre hakkında bilgi aldığı element
