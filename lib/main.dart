@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'login.dart';
 
 //Sayfalar
 import './pages/main_splash.dart';
+import 'pages/login.dart';
 
 void main() {
   runApp(
