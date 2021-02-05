@@ -1,17 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 //Sayfalar
-import './pages/main_splash.dart';
+import 'pages/main_splash.dart';
 import 'pages/login.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  //var languageRawJSON = await rootBundle.loadString("assets/pictures/icon.png");
   runApp(
     MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: LoginPage(),
+      home: SplashScreen(),
     ),
   );
 }
