@@ -85,7 +85,7 @@ class RegisterPageState extends State<RegisterPage> {
                         borderRadius: BorderRadius.all(Radius.circular(1.0)),
                         borderSide: BorderSide(color: Colors.red, width: 0.8),
                       ),
-                      labelText: "Kullanıcı Şifresi"),
+                      labelText: "Şifre Doğrulama"),
                 ),
               ),
               Padding(
@@ -113,7 +113,14 @@ class RegisterPageState extends State<RegisterPage> {
                   }
                 },
                 child: Text("Kayıt Ol"),
-              )
+              ),
+              Text("veya"),
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: Text("Mevcut Hesaba Giriş Yap"),
+              ),
             ],
           ),
         ),
