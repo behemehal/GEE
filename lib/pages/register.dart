@@ -95,20 +95,17 @@ class RegisterPageState extends State<RegisterPage> {
               TextButton(
                 //Giriş Butonu
                 onPressed: () async {
-                  var appPrefences = await SharedPreferences.getInstance();
-
-                  if (kullaniciSifreKontrolcusu.text ==
-                      kullaniciSifreDogrulayici.text) {
+                  if (kullaniciMailKontrolcusu.text.trim() == "") {
                     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                      content: Text("Kayıt Başarılı."),
+                      content: Text("Mail Boş Olamaz!"),
                     ));
-                    appPrefences.setString(kullaniciMailKontrolcusu.text,
-                        kullaniciSifreKontrolcusu.text);
-                    Navigator.of(context, rootNavigator: true)
-                        .pop(); //Geri gitme
+                  } else if (kullaniciSifreDogrulayici.text.trim() == "") {
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      content: Text("Şifre Boş Olamaz!"),
+                    ));
                   } else {
                     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                      content: Text("Şifreniz Doğrulanamadı."),
+                      content: Text("Giriş Başarılı"),
                     ));
                   }
                 },
