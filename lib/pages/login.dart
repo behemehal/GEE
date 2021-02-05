@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'register.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -26,7 +27,7 @@ class LoginPageState extends State<LoginPage> {
         child: Center(
           child: Padding(
             padding: EdgeInsets.only(
-                top: 10,
+                top: 20,
                 right: 15,
                 left: 15), //Sağdan, soldan ve üstden 10 pixel boşluk bırak
             child: Column(
@@ -35,11 +36,17 @@ class LoginPageState extends State<LoginPage> {
                   "Hoşgeldin",
                   style: TextStyle(fontSize: 36, fontFamily: "Montserrat"),
                 ),
-                Text(
-                  "Devam Etmek İçin Giriş Yap",
-                  style: TextStyle(fontSize: 14, fontFamily: "Montserrat"),
+
+                Padding(
+                  child: Text(
+                    "Devam Etmek İçin Giriş Yap",
+                    style: TextStyle(fontSize: 14, fontFamily: "Montserrat"),
+                  ),
+                  padding: EdgeInsets.only(top: 22),
                 ),
                 Container(
+                  padding: EdgeInsets.only(
+                      top: MediaQuery.of(context).size.height / 6),
                   margin: EdgeInsets.all(10),
                   child: TextField(
                     controller:
@@ -106,9 +113,16 @@ class LoginPageState extends State<LoginPage> {
                   child: Text("Giriş Yap"),
                 ),
                 TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => RegisterPage(),
+                      ),
+                    );
+                  },
                   child: Text("Kayıt Ol"),
-                ),
+                )
               ],
             ),
           ),
