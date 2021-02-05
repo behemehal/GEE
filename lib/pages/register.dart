@@ -16,9 +16,6 @@ class RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("GEE'ye Kayıt Ol"),
-      ),
       body: Center(
         child: Padding(
           padding: EdgeInsets.only(
@@ -27,7 +24,10 @@ class RegisterPageState extends State<RegisterPage> {
               left: 15), //Sağdan, soldan ve üstden 10 pixel boşluk bırak
           child: Column(
             children: [
-              Text("Kayıt Ol"),
+              Text(
+                "Kayıt Ol",
+                style: TextStyle(fontSize: 20),
+              ),
               TextField(
                 //Kullanıcı mail girişi
                 controller:
@@ -49,7 +49,7 @@ class RegisterPageState extends State<RegisterPage> {
                 controller:
                     kullaniciSifreDogrulayici, //Kullanıcının yazdığı şifreyi kontrol etmek için bunu kullanıyoruz
                 decoration:
-                    InputDecoration(labelText: "Kullanıcı Şifresi Doğrula"),
+                    InputDecoration(labelText: "Kullanıcı Şifresini Doğrula"),
               ),
               Text(
                   statusText), //Kullanıcının Mail ve ya şifre hakkında bilgi aldığı element
