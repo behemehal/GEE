@@ -46,7 +46,8 @@ class SplashScreenState extends State<SplashScreen>
     return Scaffold(
       body: Center(
         child: Padding(
-          padding: EdgeInsets.only(top: 250),
+          padding: EdgeInsets.only(
+              top: (MediaQuery.of(context).size.height / 4) - 30),
           child: Column(
             children: [
               SlideTransition(
