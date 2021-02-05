@@ -23,7 +23,7 @@ class LoginPageState extends State<LoginPage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color.fromRGBO(0, 0, 0, 0.8),
-        title: Text("Agalar'la kod'a giriş yap"),
+        title: Text("Gönüllü Eşit Eğitime Hoşgeldiniz"),
       ),
       body: Container(
         color: Color.fromRGBO(112, 107, 139, 1.0),
@@ -82,10 +82,6 @@ class LoginPageState extends State<LoginPage> {
                   onPressed: () {},
                   child: Text("Yeni Hesap Oluştur"),
                 ),
-                TextButton(
-                  onPressed: () {},
-                  child: Text("Hesapları Görüntüle."),
-                )
               ],
             ),
           ),
