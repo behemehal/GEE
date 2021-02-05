@@ -26,33 +26,72 @@ class RegisterPageState extends State<RegisterPage> {
             children: [
               Text(
                 "Kayıt Ol",
-                style: TextStyle(fontSize: 20),
+                style: TextStyle(fontSize: 36, fontFamily: "Montserrat"),
               ),
-              TextField(
-                //Kullanıcı mail girişi
-                controller:
-                    kullaniciMailKontrolcusu, //Kullanıcının yazdığı maili kontrol etmek için bunu kullanıyoruz
-                decoration: InputDecoration(labelText: "Kullanıcı Maili"),
-              ),
-              TextField(
-                //Kullanıcı şifre girişi
-                obscureText: true, //Yazı gizlensin mi
-                obscuringCharacter: "*", //şifreyi gizleyecek karakter *****
-                controller:
-                    kullaniciSifreKontrolcusu, //Kullanıcının yazdığı şifreyi kontrol etmek için bunu kullanıyoruz
-                decoration: InputDecoration(labelText: "Kullanıcı Şifresi"),
-              ),
-              TextField(
-                //Kullanıcı şifre girişi
-                obscureText: true, //Yazı gizlensin mi
-                obscuringCharacter: "*", //şifreyi gizleyecek karakter *****
-                controller:
-                    kullaniciSifreDogrulayici, //Kullanıcının yazdığı şifreyi kontrol etmek için bunu kullanıyoruz
-                decoration:
-                    InputDecoration(labelText: "Kullanıcı Şifresini Doğrula"),
-              ),
+
               Text(
-                  statusText), //Kullanıcının Mail ve ya şifre hakkında bilgi aldığı element
+                "Aramıza Katıl",
+                style: TextStyle(fontSize: 14, fontFamily: "Montserrat"),
+              ),
+              Container(
+                margin: EdgeInsets.all(10),
+                child: TextField(
+                  controller:
+                      kullaniciMailKontrolcusu, //Kullanıcının yazdığı şifreyi kontrol etmek için bunu kullanıyoruz
+                  decoration: InputDecoration(
+                      focusedBorder: OutlineInputBorder(
+                        borderSide:
+                            BorderSide(color: Colors.redAccent[700], width: 0),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(1.0)),
+                        borderSide: BorderSide(color: Colors.red, width: 0.8),
+                      ),
+                      labelText: "Kullanıcı Maili"),
+                ),
+              ),
+              Container(
+                margin: EdgeInsets.all(10),
+                child: TextField(
+                  obscureText: true, //Yazı gizlensin mi
+                  obscuringCharacter: "*", //şifreyi gizleyecek karakter *****
+                  controller:
+                      kullaniciSifreKontrolcusu, //Kullanıcının yazdığı şifreyi kontrol etmek için bunu kullanıyoruz
+                  decoration: InputDecoration(
+                      focusedBorder: OutlineInputBorder(
+                        borderSide:
+                            BorderSide(color: Colors.redAccent[700], width: 0),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(1.0)),
+                        borderSide: BorderSide(color: Colors.red, width: 0.8),
+                      ),
+                      labelText: "Şifre Giriniz"),
+                ),
+              ),
+              Container(
+                margin: EdgeInsets.all(10),
+                child: TextField(
+                  obscureText: true, //Yazı gizlensin mi
+                  obscuringCharacter: "*", //şifreyi gizleyecek karakter *****
+                  controller:
+                      kullaniciSifreDogrulayici, //Kullanıcının yazdığı şifreyi kontrol etmek için bunu kullanıyoruz
+                  decoration: InputDecoration(
+                      focusedBorder: OutlineInputBorder(
+                        borderSide:
+                            BorderSide(color: Colors.redAccent[700], width: 0),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(1.0)),
+                        borderSide: BorderSide(color: Colors.red, width: 0.8),
+                      ),
+                      labelText: "Kullanıcı Şifresi"),
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.only(top: 20),
+                child: Text(statusText),
+              ), //Kullanıcının Mail ve ya şifre hakkında bilgi aldığı element
               TextButton(
                 //Giriş Butonu
                 onPressed: () async {
