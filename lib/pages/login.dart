@@ -9,7 +9,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class LoginPageState extends State<LoginPage> {
-  String statusText = "Lütfen Mail ve Şifre Girin";
+  String statusText = " ";
 
   TextEditingController kullaniciMailKontrolcusu = TextEditingController();
   TextEditingController kullaniciSifreKontrolcusu = TextEditingController();
@@ -89,24 +89,17 @@ class LoginPageState extends State<LoginPage> {
                 TextButton(
                   //Giriş Butonu
                   onPressed: () async {
-                    var appPrefences = await SharedPreferences.getInstance();
-                    if (appPrefences
-                        .containsKey(kullaniciMailKontrolcusu.text)) {
-                      if (kullaniciSifreKontrolcusu.text ==
-                          appPrefences
-                              .getString(kullaniciMailKontrolcusu.text)) {
-                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                          content: Text("Giriş Başarılı."),
-                        ));
-                      } else {
-                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                          content: Text("Giriş Başarısız."),
-                        ));
-                      }
+                    if (kullaniciMailKontrolcusu.text.trim() == "") {
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                        content: Text("Mail Boş Olamaz!."),
+                      ));
+                    } else if (kullaniciSifreKontrolcusu.text.trim() == "") {
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                        content: Text("Sifre Boş Olamaz!."),
+                      ));
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                        content:
-                            Text("Geçerli Mail İle Eşleşen Hesap Bulunamadı."),
+                        content: Text("Giriş Başarılı."),
                       ));
                     }
                   },
