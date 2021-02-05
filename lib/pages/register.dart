@@ -7,7 +7,7 @@ class RegisterPage extends StatefulWidget {
 }
 
 class RegisterPageState extends State<RegisterPage> {
-  String statusText = "Lütfen mail ve şifre girin";
+  String statusText = " ";
 
   TextEditingController kullaniciMailKontrolcusu = TextEditingController();
   TextEditingController kullaniciSifreKontrolcusu = TextEditingController();
