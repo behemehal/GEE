@@ -33,7 +33,7 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
-    - ./assets/pictures/icon.svg
+    - assets/pictures/icon.png
   fonts:
     - family: Montserrat
       fonts:
