@@ -11,18 +11,33 @@ class ProfilPageState extends State<ProfilPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Center(
-      child: Padding(
-        padding: EdgeInsets.only(top: 10, right: 15, left: 15),
+      body: SafeArea(
         child: Column(
           children: [
-            Text(
-              "Bir Şeyler Yazın",
-              style: TextStyle(fontSize: 36, fontFamily: "Montserrat"),
-            )
+            Container(
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: NetworkImage(
+                      "https://c4.wallpaperflare.com/wallpaper/480/423/714/nissan-black-gtr34-wallpaper-preview.jpg"),
+                  fit: BoxFit.cover,
+                ),
+              ),
+              child: Container(
+                width: double.infinity,
+                height: 200,
+                child: Container(
+                  alignment: Alignment(0.0, 2.5),
+                  child: CircleAvatar(
+                    backgroundImage:
+                        NetworkImage("https://i.hizliresim.com/QCpifz.png"),
+                    radius: 60.0,
+                  ),
+                ),
+              ),
+            ),
           ],
         ),
       ),
-    ));
+    );
   }
 }
