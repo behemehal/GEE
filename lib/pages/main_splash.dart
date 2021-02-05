@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'login.dart';
 import 'register.dart';
+import 'profil.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -138,6 +139,17 @@ class SplashScreenState extends State<SplashScreen>
                   );
                 },
                 child: Text("Register Sayfasına Git"),
+              ),
+              TextButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => ProfilPage(),
+                    ),
+                  );
+                },
+                child: Text("Profil Sayfasına Git"),
               )
             ],
           ),
