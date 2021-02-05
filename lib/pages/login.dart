@@ -21,12 +21,8 @@ class LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Color.fromRGBO(0, 0, 0, 0.8),
-        title: Text("Gönüllü Eşit Eğitime Hoşgeldiniz"),
-      ),
       body: Container(
-        color: Color.fromRGBO(112, 107, 139, 1.0),
+        color: Colors.white,
         child: Center(
           child: Padding(
             padding: EdgeInsets.only(
@@ -35,21 +31,52 @@ class LoginPageState extends State<LoginPage> {
                 left: 15), //Sağdan, soldan ve üstden 10 pixel boşluk bırak
             child: Column(
               children: [
-                Text("Giriş Yap"),
-                TextField(
-                  //Kullanıcı mail girişi
-                  controller:
-                      kullaniciMailKontrolcusu, //Kullanıcının yazdığı maili kontrol etmek için bunu kullanıyoruz
-                  decoration: InputDecoration(labelText: "Kullanıcı Maili"),
+                Text(
+                  "Hoşgeldin",
+                  style: TextStyle(fontSize: 36, fontFamily: "Montserrat"),
                 ),
-                TextField(
-                  //Kullanıcı şifre girişi
-                  obscureText: true, //Yazı gizlensin mi
-                  obscuringCharacter: "*", //şifreyi gizleyecek karakter *****
-                  controller:
-                      kullaniciSifreKontrolcusu, //Kullanıcının yazdığı şifreyi kontrol etmek için bunu kullanıyoruz
-                  decoration: InputDecoration(labelText: "Kullanıcı Şifresi"),
+                Text(
+                  "Devam Etmek İçin Giriş Yap",
+                  style: TextStyle(fontSize: 14, fontFamily: "Montserrat"),
                 ),
+                Container(
+                  margin: EdgeInsets.all(10),
+                  child: TextField(
+                    controller:
+                        kullaniciMailKontrolcusu, //Kullanıcının yazdığı şifreyi kontrol etmek için bunu kullanıyoruz
+                    decoration: InputDecoration(
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                              color: Colors.redAccent[700], width: 0),
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(1.0)),
+                          borderSide:
+                              BorderSide(color: Colors.red[600], width: 0.8),
+                        ),
+                        labelText: "Kullanıcı Mail"),
+                  ),
+                ),
+                Container(
+                  margin: EdgeInsets.all(10),
+                  child: TextField(
+                    obscureText: true, //Yazı gizlensin mi
+                    obscuringCharacter: "*", //şifreyi gizleyecek karakter *****
+                    controller:
+                        kullaniciSifreKontrolcusu, //Kullanıcının yazdığı şifreyi kontrol etmek için bunu kullanıyoruz
+                    decoration: InputDecoration(
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                              color: Colors.redAccent[700], width: 0),
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(1.0)),
+                          borderSide: BorderSide(color: Colors.red, width: 0.8),
+                        ),
+                        labelText: "Kullanıcı Şifresi"),
+                  ),
+                ),
+
                 Text(
                     statusText), //Kullanıcının Mail ve ya şifre hakkında bilgi aldığı element
                 TextButton(
@@ -80,7 +107,7 @@ class LoginPageState extends State<LoginPage> {
                 ),
                 TextButton(
                   onPressed: () {},
-                  child: Text("Yeni Hesap Oluştur"),
+                  child: Text("Kayıt Ol"),
                 ),
               ],
             ),
