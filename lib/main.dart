@@ -3,7 +3,6 @@ import 'package:flutter/services.dart';
 
 //Sayfalar
 import 'pages/main_splash.dart';
-import 'pages/login.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
