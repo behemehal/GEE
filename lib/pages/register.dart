@@ -7,8 +7,6 @@ class RegisterPage extends StatefulWidget {
 }
 
 class RegisterPageState extends State<RegisterPage> {
-  String gecerliMail = "test@mail.com";
-  String gecerliSifre = "gecerliSifre";
   String statusText = "Lütfen mail ve şifre girin";
 
   TextEditingController kullaniciMailKontrolcusu = TextEditingController();
@@ -50,7 +48,8 @@ class RegisterPageState extends State<RegisterPage> {
                 obscuringCharacter: "*", //şifreyi gizleyecek karakter *****
                 controller:
                     kullaniciSifreDogrulayici, //Kullanıcının yazdığı şifreyi kontrol etmek için bunu kullanıyoruz
-                decoration: InputDecoration(labelText: "Kullanıcı Şifresi"),
+                decoration:
+                    InputDecoration(labelText: "Kullanıcı Şifresi Doğrula"),
               ),
               Text(
                   statusText), //Kullanıcının Mail ve ya şifre hakkında bilgi aldığı element
