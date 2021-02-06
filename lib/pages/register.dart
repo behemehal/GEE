@@ -18,10 +18,7 @@ class RegisterPageState extends State<RegisterPage> {
     return Scaffold(
       body: Center(
         child: Padding(
-          padding: EdgeInsets.only(
-              top: 10,
-              right: 15,
-              left: 15), //Sağdan, soldan ve üstden 10 pixel boşluk bırak
+          padding: EdgeInsets.only(top: 10, right: 15, left: 15), //Sağdan, soldan ve üstden 10 pixel boşluk bırak
           child: Column(
             children: [
               Text(
@@ -39,8 +36,7 @@ class RegisterPageState extends State<RegisterPage> {
                 ),
                 margin: EdgeInsets.all(10),
                 child: TextField(
-                  controller:
-                      kullaniciMailKontrolcusu, //Kullanıcının yazdığı şifreyi kontrol etmek için bunu kullanıyoruz
+                  controller: kullaniciMailKontrolcusu, //Kullanıcının yazdığı şifreyi kontrol etmek için bunu kullanıyoruz
                   decoration: InputDecoration(labelText: "Kullanıcı Maili"),
                 ),
               ),
@@ -49,8 +45,7 @@ class RegisterPageState extends State<RegisterPage> {
                 child: TextField(
                   obscureText: true, //Yazı gizlensin mi
                   obscuringCharacter: "*", //şifreyi gizleyecek karakter *****
-                  controller:
-                      kullaniciSifreKontrolcusu, //Kullanıcının yazdığı şifreyi kontrol etmek için bunu kullanıyoruz
+                  controller: kullaniciSifreKontrolcusu, //Kullanıcının yazdığı şifreyi kontrol etmek için bunu kullanıyoruz
                   decoration: InputDecoration(labelText: "Şifre Giriniz"),
                 ),
               ),
@@ -59,8 +54,7 @@ class RegisterPageState extends State<RegisterPage> {
                 child: TextField(
                   obscureText: true, //Yazı gizlensin mi
                   obscuringCharacter: "*", //şifreyi gizleyecek karakter *****
-                  controller:
-                      kullaniciSifreDogrulayici, //Kullanıcının yazdığı şifreyi kontrol etmek için bunu kullanıyoruz
+                  controller: kullaniciSifreDogrulayici, //Kullanıcının yazdığı şifreyi kontrol etmek için bunu kullanıyoruz
                   decoration: InputDecoration(labelText: "Şifre Doğrulama"),
                 ),
               ),
@@ -89,12 +83,10 @@ class RegisterPageState extends State<RegisterPage> {
                   },
                   child: Text(
                     "Kayıt Ol",
-                    style: TextStyle(
-                        fontFamily: "Montserrat", color: Colors.white),
+                    style: TextStyle(fontFamily: "Montserrat", color: Colors.white),
                   ),
                   style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all<Color>(
-                        Color.fromRGBO(158, 1, 49, 1)),
+                    backgroundColor: MaterialStateProperty.all<Color>(Color.fromRGBO(158, 1, 49, 1)),
                   ),
                 ),
               ),
@@ -115,12 +107,10 @@ class RegisterPageState extends State<RegisterPage> {
                   },
                   child: Text(
                     "Mevcut Hesaba Giriş Yap",
-                    style: TextStyle(
-                        fontFamily: "Montserrat", color: Colors.white),
+                    style: TextStyle(fontFamily: "Montserrat", color: Colors.white),
                   ),
                   style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all<Color>(
-                        Color.fromRGBO(158, 1, 49, 1)),
+                    backgroundColor: MaterialStateProperty.all<Color>(Color.fromRGBO(158, 1, 49, 1)),
                   )),
             ],
           ),
