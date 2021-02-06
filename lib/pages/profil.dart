@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:gee/pages/register.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../utils/markdown_formatter.dart';
+
 class ProfilPage extends StatefulWidget {
   ProfilPage(this.edit);
   bool edit;
@@ -230,7 +232,9 @@ class ProfilPageState extends State<ProfilPage> {
                 Container(
                   child: Padding(
                     padding: const EdgeInsets.all(15.0),
-                    child: RichText(),
+                    child: MarkdownFormatter(
+                      "**Arkadaşlar _bilgisayar programcılığı** böülümüne bu _yıl_ girdim, sıraya yazarken kampüsün yerini yazmamışım. Acaba bilgisayar programcılığı bölümünün yeri nerede bilen varsa çok iyi olur,'",
+                    ),
                   ),
                 ),
             ],

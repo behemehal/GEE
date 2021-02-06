@@ -151,7 +151,7 @@ class SplashScreenState extends State<SplashScreen> with TickerProviderStateMixi
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => ProfilPage(true),
+                      builder: (context) => ProfilPage(false),
                     ),
                   );
                 },
