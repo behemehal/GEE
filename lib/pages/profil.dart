@@ -1,14 +1,36 @@
+import 'dart:html';
+
 import 'package:flutter/material.dart';
 import 'package:gee/pages/register.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import '../utils/markdown_formatter.dart';
 
 class ProfilPage extends StatefulWidget {
-  ProfilPage(this.edit);
+  ProfilPage(this.edit, this.username, this.sehir, this.il, this.okul, this.rol);
   bool edit;
+  String username;
+  String sehir;
+  String il;
+  String okul;
+  String rol;
+  String url;
+  int cevap;
+  int followers;
+  String description;
+
   @override
-  ProfilPageState createState() => ProfilPageState(this.edit);
+  ProfilPageState createState() => ProfilPageState(
+        this.edit,
+        this.username,
+        this.sehir,
+        this.il,
+        this.okul,
+        this.rol,
+        this.url,
+        this.cevap,
+        this.followers,
+        this.description,
+      );
 }
 
 class CustomListTile extends StatelessWidget {
@@ -53,8 +75,17 @@ class CustomListTile extends StatelessWidget {
 }
 
 class ProfilPageState extends State<ProfilPage> {
-  ProfilPageState(this.edit);
+  ProfilPageState(this.edit, this.username, this.sehir, this.il, this.okul, this.rol, this.url, this.cevap, this.followers, this.description);
   bool edit;
+  String username;
+  String sehir;
+  String il;
+  String okul;
+  String rol;
+  String url;
+  int cevap;
+  int followers;
+  String description;
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text("")),
@@ -232,11 +263,9 @@ class ProfilPageState extends State<ProfilPage> {
                 Container(
                   child: Padding(
                     padding: const EdgeInsets.all(15.0),
-                    child: MarkdownFormatter(
-                      "**Arkadaşlar _bilgisayar programcılığı** böülümüne bu _yıl_ girdim, sıraya yazarken kampüsün yerini yazmamışım. Acaba bilgisayar programcılığı bölümünün yeri nerede bilen varsa çok iyi olur,'",
-                    ),
+                    child: MarkdownFormatter(this.description),
                   ),
-                ),
+                )
             ],
           ),
         ),
