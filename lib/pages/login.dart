@@ -15,6 +15,8 @@ class LoginPageState extends State<LoginPage> {
 
   TextEditingController kullaniciMailKontrolcusu = TextEditingController();
   TextEditingController kullaniciSifreKontrolcusu = TextEditingController();
+
+  get onPressed => null;
   @override
   void initState() {
     super.initState();
@@ -62,42 +64,38 @@ class LoginPageState extends State<LoginPage> {
 
                 Text(statusText), //Kullanıcının Mail ve ya şifre hakkında bilgi aldığı element
                 TextButton(
-                    //Giriş Butonu
+                  //Giriş Butonu
 
-                    onPressed: () async {
-                      if (kullaniciMailKontrolcusu.text.trim() == "") {
-                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                          content: Text("Mail Boş Olamaz!."),
-                        ));
-                      } else if (kullaniciSifreKontrolcusu.text.trim() == "") {
-                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                          content: Text("Sifre Boş Olamaz!."),
-                        ));
-                      } else {
-                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                          content: Text("Giriş Başarılı."),
-                        ));
-                      }
-                    },
-                    child: TextButton(
-                      style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all<Color>(Colors.red),
-                      ),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => HomePage(),
-                          ),
-                        );
-                      },
-                      child: Text(
-                        "Giriş Yap",
-                        style: TextStyle(fontSize: 12.0, color: Color.fromRGBO(158, 1, 49, 1)),
-                      ),
-                    )),
-                TextButton(
+                  onPressed: () async {
+                    if (kullaniciMailKontrolcusu.text.trim() == "") {
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                        content: Text("Mail Boş Olamaz!."),
+                      ));
+                    } else if (kullaniciSifreKontrolcusu.text.trim() == "") {
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                        content: Text("Sifre Boş Olamaz!."),
+                      ));
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                        content: Text("Giriş Başarılı."),
+                      ));
+                    }
+                  },
+                  child: Text("test"),
+                ),
+
+                ElevatedButton.icon(
                   onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => HomePage(),
+                      ),
+                    );
+                  },
+                  icon: Icon(Icons.arrow_circle_down, size: 8),
+                  label: Text("Giriş Yap"),
+                  /*onPressed: () {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
@@ -108,7 +106,7 @@ class LoginPageState extends State<LoginPage> {
                   child: Text(
                     "Kayıt Ol",
                     style: TextStyle(fontSize: 12.0, color: Color.fromRGBO(158, 1, 49, 1)),
-                  ),
+                  ),*/
                 )
               ],
             ),
