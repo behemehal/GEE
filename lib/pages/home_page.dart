@@ -6,7 +6,6 @@ import '../pages/create_post.dart';
 
 import '../components/home_page_components/StateChanger.dart';
 import '../components/home_page_components/ActionChip.dart';
-import '../components/home_page_components/ProfileStatus.dart';
 import '../components/home_page_components/ProfileButton.dart';
 import '../components/home_page_components/CurvedPage.dart';
 import '../components/home_page_components/SearchBar.dart';
@@ -67,6 +66,12 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
 
     return Scaffold(
       appBar: AppBar(
+        actions: [
+          IconButton(
+            onPressed: () => {},
+            icon: Icon(Icons.info),
+          )
+        ],
         title: Row(
           children: [
             ProfileButton(() {
@@ -91,7 +96,6 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
         backgroundColor: Color.fromRGBO(130, 8, 41, 1.0),
         bottomOpacity: 0.0,
         elevation: 0.0,
-        actions: [],
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => Navigator.push(
