@@ -93,7 +93,7 @@ class LoginPageState extends State<LoginPage> {
                       ),
                     );
                   },
-                  icon: Icon(Icons.arrow_circle_down, size: 8),
+                  icon: Icon(Icons.login, size: 12),
                   label: Text("Giriş Yap", style: TextStyle(fontSize: 12.0, color: Colors.white)),
                 ),
                 Padding(
@@ -115,7 +115,7 @@ class LoginPageState extends State<LoginPage> {
                       ),
                     );
                   },
-                  icon: Icon(Icons.arrow_circle_down, size: 6),
+                  icon: Icon(Icons.app_registration, size: 12),
                   label: Text("Kayıt ol", style: TextStyle(fontSize: 12.0, color: Colors.white)),
                 ),
 
