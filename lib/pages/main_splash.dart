@@ -5,6 +5,7 @@ import 'login.dart';
 import 'register.dart';
 import 'profil.dart';
 import 'home_page.dart';
+import 'post_page.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -151,11 +152,11 @@ class SplashScreenState extends State<SplashScreen> with TickerProviderStateMixi
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => ProfilPage(false, "test"),
+                      builder: (context) => PostPage("test"),
                     ),
                   );
                 },
-                child: Text("Profil Sayfasına Git"),
+                child: Text("Post Sayfasına Git"),
               ),
               TextButton(
                 onPressed: () {

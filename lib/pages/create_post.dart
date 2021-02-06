@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gee/pages/home_page.dart';
 import 'package:gee/utils/markdown_formatter.dart';
+import '../components/login_components/imagepicker.dart';
 
 class CreatePost extends StatefulWidget {
   CreatePost(
@@ -22,8 +23,9 @@ class CreatePostState extends State<CreatePost> {
   bool edit;
   String postID;
 
-  TextEditingController name = TextEditingController();
+  TextEditingController title = TextEditingController();
   TextEditingController detail = TextEditingController();
+  TextEditingController tag = TextEditingController();
 
   @override
   void initState() {
@@ -49,8 +51,8 @@ class CreatePostState extends State<CreatePost> {
               Padding(
                 padding: EdgeInsets.only(bottom: 10),
                 child: Container(
-                  width: 500,
-                  height: 250,
+                  width: 300,
+                  height: 150,
                   color: Color.fromRGBO(100, 100, 100, 1),
                   child: Center(
                     child: Column(
@@ -75,6 +77,7 @@ class CreatePostState extends State<CreatePost> {
                 ),
               ),
               TextField(
+                controller: title,
                 decoration: InputDecoration(
                   labelText: "Başlık",
                 ),
@@ -89,6 +92,17 @@ class CreatePostState extends State<CreatePost> {
                   autocorrect: false,
                   decoration: InputDecoration(
                     labelText: 'Detay gir',
+                  ),
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.only(bottom: 10, top: 10),
+                child: TextField(
+                  controller: tag,
+                  maxLength: 30,
+                  autocorrect: false,
+                  decoration: InputDecoration(
+                    labelText: 'Tag Ekle (#)',
                   ),
                 ),
               ),
