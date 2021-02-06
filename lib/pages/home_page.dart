@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:gee/components/Category.dart';
 
+import '../pages/profil.dart';
+
+import '../components/StateChanger.dart';
 import '../components/ActionChip.dart';
 import '../components/ProfileStatus.dart';
+import '../components/ProfileButton.dart';
+import '../components/CurvedPage.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -17,7 +23,7 @@ class HomePageState extends State<HomePage> {
     //Sayfa açıldıkdan sonra bura çalışır
   }
 
-  var kategoriler = [
+  List<ToolbarActionChipDart> kategoriler = [
     ToolbarActionChipDart(
       tooltip: "Popüler Konuları Görüntüle",
       text: "Popüler Konular",
@@ -47,24 +53,14 @@ class HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: Row(
           children: [
-            InkWell(
-              splashColor: Color.fromRGBO(130, 8, 41, 1.0),
-              borderRadius: BorderRadius.circular(
-                360,
-              ),
-              onTap: () {},
-              child: Container(
-                width: 30,
-                height: 30,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  shape: BoxShape.circle,
-                  image: DecorationImage(
-                      image: AssetImage('assets/pictures/user.png'),
-                      fit: BoxFit.fill),
+            ProfileButton().generate(() {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ProfilPage(),
                 ),
-              ),
-            ),
+              );
+            }),
             Padding(
               padding: EdgeInsets.only(left: 10),
               child: Text(
@@ -95,125 +91,58 @@ class HomePageState extends State<HomePage> {
               child: Builder(
                 builder: (context2) => Row(
                   children: [
-                    Padding(
-                      padding: EdgeInsets.only(
-                        right: 10.0,
-                      ),
-                      child: Material(
-                        borderRadius: BorderRadius.circular(
-                          360,
-                        ),
-                        color: Colors.white,
-                        child: InkWell(
-                          splashColor: Color.fromRGBO(130, 8, 41, 1.0),
-                          borderRadius: BorderRadius.circular(
-                            360,
-                          ),
-                          onTap: () {
-                            setState(() {
-                              if (state == CrossFadeState.showFirst) {
-                                state = CrossFadeState.showSecond;
-                              } else {
-                                state = CrossFadeState.showFirst;
-                              }
-                            });
-                          },
-                          child: Padding(
-                            padding: EdgeInsets.all(
-                              3.0,
-                            ),
-                            child: const Icon(
-                              Icons.search,
-                              size: 25,
-                              color: Color.fromRGBO(130, 8, 41, 1.0),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
+                    StateChanger().generate(() {
+                      setState(() {
+                        if (state == CrossFadeState.showFirst) {
+                          state = CrossFadeState.showSecond;
+                        } else {
+                          state = CrossFadeState.showFirst;
+                        }
+                      });
+                    }),
                     AnimatedCrossFade(
-                        firstCurve: Curves.easeInToLinear,
-                        secondCurve: Curves.easeInToLinear,
-                        duration: Duration(
-                          milliseconds: 500,
-                        ),
-                        crossFadeState: state,
-                        firstChild: Row(
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.only(
-                                right: 10.0,
-                              ),
-                              child: Container(
-                                height: 50,
-                                width: MediaQuery.of(context).size.width - 71,
-                                child: ListView.builder(
-                                  scrollDirection: Axis.horizontal,
-                                  itemCount: kategoriler.length,
-                                  itemBuilder:
-                                      (BuildContext bcontext, int index) {
-                                    kategoriler[index].onPressed = () {
-                                      for (var kategori in kategoriler) {
-                                        setState(() {
-                                          if (kategoriler[index] != kategori) {
-                                            kategori.active = false;
-                                          } else {
-                                            kategori.active = true;
-                                          }
-                                        });
-                                      }
-                                    };
-                                    return Padding(
-                                      padding: EdgeInsets.only(
-                                          left: index == 0 ? 0 : 5),
-                                      child: kategoriler[index].generate(),
-                                    );
-                                  },
-                                ),
-                              ),
-                            )
-                          ],
-                        ),
-                        secondChild: Container(
-                          height: 30,
-                          width: MediaQuery.of(context2).size.width - 61,
-                          child: Padding(
-                            padding: EdgeInsets.only(
-                              bottom: 3.0,
+                      firstCurve: Curves.easeInToLinear,
+                      secondCurve: Curves.easeInToLinear,
+                      duration: Duration(
+                        milliseconds: 500,
+                      ),
+                      crossFadeState: state,
+                      firstChild: Category(kategoriler),
+                      secondChild: Container(
+                        height: 30,
+                        width: MediaQuery.of(context2).size.width - 61,
+                        child: Padding(
+                          padding: EdgeInsets.only(
+                            bottom: 3.0,
+                          ),
+                          child: TextField(
+                            enabled: state != CrossFadeState.showFirst,
+                            cursorColor: Colors.white,
+                            autofocus: false,
+                            style: TextStyle(
+                              color: Colors.white,
                             ),
-                            child: TextField(
-                              enabled: state != CrossFadeState.showFirst,
-                              cursorColor: Colors.white,
-                              autofocus: false,
-                              style: TextStyle(
+                            decoration: InputDecoration(
+                              helperStyle: TextStyle(
                                 color: Colors.white,
                               ),
-                              decoration: InputDecoration(
-                                helperStyle: TextStyle(
-                                  color: Colors.white,
-                                ),
-                                hintStyle: TextStyle(
-                                  color: Colors.white,
-                                ),
-                                border: InputBorder.none,
-                                hintText: "Search reports",
+                              hintStyle: TextStyle(
+                                color: Colors.white,
                               ),
+                              border: InputBorder.none,
+                              hintText: "Search reports",
                             ),
                           ),
-                        ))
+                        ),
+                      ),
+                    )
                   ],
                 ),
               ),
             ),
-            Container(
-              height: MediaQuery.of(context).size.height - 96,
-              width: MediaQuery.of(context).size.width,
-              decoration: new BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(25),
-                  topRight: Radius.circular(25),
-                ),
+            CurvedPage(
+              Center(
+                child: Text("DENEME"),
               ),
             )
           ],
