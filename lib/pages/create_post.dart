@@ -38,6 +38,7 @@ class CreatePostState extends State<CreatePost> {
     return Scaffold(
       appBar: AppBar(
         title: Text(this.edit ? "Postu Düzenle" : "Post Oluştur"),
+        backgroundColor: Color.fromRGBO(130, 8, 41, 1.0),
       ),
       body: Container(
         margin: EdgeInsets.only(left: 10, right: 10, top: 10),

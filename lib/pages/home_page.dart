@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gee/components/home_page_components/Category.dart';
+import 'package:gee/pages/about.dart';
 
 import '../pages/profil.dart';
 import '../pages/create_post.dart';
@@ -54,21 +55,14 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    var onEdit = (ind) {
-      setState(() {
-        for (var kategori in kategoriler) {
-          kategori.active = false;
-        }
-        kategoriler[ind].active = true;
-      });
-      setState(() {});
-    };
-
     return Scaffold(
       appBar: AppBar(
         actions: [
           IconButton(
-            onPressed: () => {},
+            onPressed: () => Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => AboutPage()),
+            ),
             icon: Icon(Icons.info),
           )
         ],
