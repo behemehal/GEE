@@ -26,6 +26,7 @@ class RegisterPageState extends State<RegisterPage> {
                 style: TextStyle(fontSize: 36, fontFamily: "Montserrat"),
               ),
 
+              Padding(padding: EdgeInsets.only(top: 5)),
               Text(
                 "Aramıza Katıl",
                 style: TextStyle(fontSize: 14, fontFamily: "Montserrat"),
@@ -58,6 +59,7 @@ class RegisterPageState extends State<RegisterPage> {
                   decoration: InputDecoration(labelText: "Şifre Doğrulama"),
                 ),
               ),
+
               Padding(
                 padding: EdgeInsets.only(top: 20),
                 child: Text(statusText),
@@ -74,6 +76,10 @@ class RegisterPageState extends State<RegisterPage> {
                     } else if (kullaniciSifreDogrulayici.text.trim() == "") {
                       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                         content: Text("Şifre Boş Olamaz!"),
+                      ));
+                    } else if (kullaniciSifreDogrulayici.text.trim() != kullaniciSifreKontrolcusu.text.trim()) {
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                        content: Text("Şifreler Eşleşmedi!"),
                       ));
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
