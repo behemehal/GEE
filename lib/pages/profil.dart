@@ -67,7 +67,7 @@ class ProfilPageState extends State<ProfilPage> {
                 fontWeight: FontWeight.w300),
           ),
           SizedBox(
-            height: 10,
+            height: 6,
           ),
           Card(
               margin: EdgeInsets.symmetric(horizontal: 20.0, vertical: 8.0),
@@ -80,15 +80,65 @@ class ProfilPageState extends State<ProfilPage> {
                         letterSpacing: 2.0, fontWeight: FontWeight.w300),
                   ))),
           SizedBox(
-            height: 15,
+            height: 10,
           ),
-          SizedBox(
-            height: 50,
+          Card(
+            margin: EdgeInsets.symmetric(horizontal: 7.0, vertical: 8.0),
+            child: Padding(
+              padding: const EdgeInsets.all(4.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Expanded(
+                    child: Column(
+                      children: [
+                        Text(
+                          "Cevaplar",
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 14.0,
+                              fontWeight: FontWeight.w600),
+                        ),
+                        SizedBox(
+                          height: 7,
+                        ),
+                        Text(
+                          "15",
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 10.0,
+                              fontWeight: FontWeight.w300),
+                        )
+                      ],
+                    ),
+                  ),
+                  Expanded(
+                    child: Column(
+                      children: [
+                        Text(
+                          "Takipçi",
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 14.0,
+                              fontWeight: FontWeight.w600),
+                        ),
+                        SizedBox(
+                          height: 7,
+                        ),
+                        Text(
+                          "5",
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 10.0,
+                              fontWeight: FontWeight.w300),
+                        )
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [],
-          )
         ],
       ),
     ));
