@@ -35,6 +35,8 @@ flutter:
   assets:
     - assets/pictures/icon.png
     - assets/pictures/user.png
+    - assets/pictures/campus.png
+    - assets/pictures/question.png
   fonts:
     - family: Montserrat
       fonts:

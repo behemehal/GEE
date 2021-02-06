@@ -7,6 +7,11 @@ class CurvedPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Container(
+        padding: EdgeInsets.only(
+          top: 20,
+          left: 15,
+          right: 15,
+        ),
         height: MediaQuery.of(context).size.height - 96,
         width: MediaQuery.of(context).size.width,
         child: this.content,
