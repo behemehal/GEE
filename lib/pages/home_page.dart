@@ -10,10 +10,7 @@ import '../components/home_page_components/ProfileButton.dart';
 import '../components/home_page_components/CurvedPage.dart';
 import '../components/home_page_components/SearchBar.dart';
 import '../components/home_page_components/TopicTitle.dart';
-import '../components/home_page_components/PostRate.dart';
-import '../components/home_page_components/IconLabel.dart';
-
-import '../utils/markdown_formatter.dart';
+import '../components/home_page_components/HomePost.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -154,28 +151,37 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
                 child: Column(
                   children: [
                     TopicTitle(viewGrid),
-                    Card(
-                      clipBehavior: Clip.antiAlias,
-                      child: Column(
-                        children: [
-                          ListTile(
-                            leading: ProfileButton(() {
-                              ProfilPage(true);
-                            }),
-                            title: const Text('Işık Üniversitesi Hakkında'),
-                            trailing: PostRate(7, 3),
-                            subtitle: MarkdownFormatter(
-                              "**test tesdsa**",
-                            ),
-                          ),
-                          IconLabel(
-                            Icons.visibility,
-                            "100k",
-                            iconColor: Colors.red,
-                          )
-                        ],
-                      ),
+                    HomePost(
+                      "Işık Üniversitesi Hakkında",
+                      "**Arkadaşlar** bilgisayar _programcılığı_ böülümüne bu yıl girdim, sıraya yazarken kampüsün yerini yazmamışım. Acaba bilgisayar programcılığı bölümünün yeri nerede bilen varsa çok iyi olur",
+                      "100K",
+                      "39",
+                      true,
+                      "7",
+                      "3",
+                      "",
+                      postPicURL: "https://i.ytimg.com/vi/sLlY_iVWXlA/maxresdefault.jpg",
                     ),
+                    HomePost(
+                      "Bilgisayar Programcılığı Bölümü",
+                      "Merhaba hangi **derslerin** olduğu hakkında bilgi almak _isterim_?",
+                      "97K",
+                      "134",
+                      false,
+                      "9",
+                      "1",
+                      "",
+                    ),
+                    HomePost(
+                      "Bilgisayar Programcılığı Bölümü",
+                      "Merhaba hangi **derslerin** olduğu hakkında bilgi almak _isterim_?",
+                      "100K",
+                      "39",
+                      false,
+                      "9",
+                      "1",
+                      "",
+                    )
                   ],
                 ),
               ),
