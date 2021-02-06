@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gee/pages/home_page.dart';
 import 'package:gee/pages/register.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../utils/markdown_formatter.dart';
@@ -104,7 +105,14 @@ class ProfilPageState extends State<ProfilPage> {
             ListTile(
               title: Text('Çıkış Yap'),
               trailing: Icon(Icons.logout),
-              onTap: () {},
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => HomePage(),
+                  ),
+                );
+              },
             ),
           ],
         ),
