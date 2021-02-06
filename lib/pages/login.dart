@@ -96,6 +96,16 @@ class LoginPageState extends State<LoginPage> {
                   icon: Icon(Icons.arrow_circle_down, size: 8),
                   label: Text("Giriş Yap", style: TextStyle(fontSize: 12.0, color: Colors.white)),
                 ),
+                Padding(
+                  padding: EdgeInsets.only(top: 10, bottom: 10),
+                  child: Text(
+                    "Veya",
+                    style: TextStyle(
+                      fontFamily: "Montserrat",
+                      color: Color.fromRGBO(100, 100, 100, 1),
+                    ),
+                  ),
+                ),
                 ElevatedButton.icon(
                   onPressed: () {
                     Navigator.push(
