@@ -6,8 +6,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../utils/markdown_formatter.dart';
 
 class ProfilPage extends StatefulWidget {
-  ProfilPage(this.edit, this.username, this.sehir, this.il, this.okul, this.rol);
+  ProfilPage(this.edit, this.username, this.sehir, this.il, this.okul, this.rol, this.id);
   bool edit;
+  String id;
   String username;
   String sehir;
   String il;
@@ -30,6 +31,7 @@ class ProfilPage extends StatefulWidget {
         this.cevap,
         this.followers,
         this.description,
+        this.id,
       );
 }
 
@@ -75,7 +77,8 @@ class CustomListTile extends StatelessWidget {
 }
 
 class ProfilPageState extends State<ProfilPage> {
-  ProfilPageState(this.edit, this.username, this.sehir, this.il, this.okul, this.rol, this.url, this.cevap, this.followers, this.description);
+  ProfilPageState(
+      this.edit, this.username, this.sehir, this.il, this.okul, this.rol, this.url, this.cevap, this.followers, this.description, this.id);
   bool edit;
   String username;
   String sehir;
@@ -83,6 +86,7 @@ class ProfilPageState extends State<ProfilPage> {
   String okul;
   String rol;
   String url;
+  String id;
   int cevap;
   int followers;
   String description;
