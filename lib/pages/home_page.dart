@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:gee/components/Category.dart';
+import 'package:gee/components/home_page_components/Category.dart';
 
 import '../pages/profil.dart';
 
-import '../components/StateChanger.dart';
-import '../components/ActionChip.dart';
-import '../components/ProfileStatus.dart';
-import '../components/ProfileButton.dart';
-import '../components/CurvedPage.dart';
+import '../components/home_page_components/StateChanger.dart';
+import '../components/home_page_components/ActionChip.dart';
+import '../components/home_page_components/ProfileStatus.dart';
+import '../components/home_page_components/ProfileButton.dart';
+import '../components/home_page_components/CurvedPage.dart';
+import '../components/home_page_components/SearchBar.dart';
+import '../components/home_page_components/TopicTitle.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -16,7 +18,9 @@ class HomePage extends StatefulWidget {
 
 class HomePageState extends State<HomePage> {
   var state = CrossFadeState.showFirst;
+  var viewGrid = 0;
   var index = 0;
+
   @override
   void initState() {
     super.initState();
@@ -53,7 +57,7 @@ class HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: Row(
           children: [
-            ProfileButton().generate(() {
+            ProfileButton(() {
               Navigator.push(
                 context,
                 MaterialPageRoute(
@@ -91,58 +95,55 @@ class HomePageState extends State<HomePage> {
               child: Builder(
                 builder: (context2) => Row(
                   children: [
-                    StateChanger().generate(() {
-                      setState(() {
-                        if (state == CrossFadeState.showFirst) {
-                          state = CrossFadeState.showSecond;
-                        } else {
-                          state = CrossFadeState.showFirst;
-                        }
-                      });
-                    }),
+                    StateChanger(
+                      state == CrossFadeState.showFirst,
+                      () {
+                        setState(() {
+                          if (state == CrossFadeState.showFirst) {
+                            state = CrossFadeState.showSecond;
+                          } else {
+                            state = CrossFadeState.showFirst;
+                          }
+                        });
+                      },
+                    ),
                     AnimatedCrossFade(
                       firstCurve: Curves.easeInToLinear,
                       secondCurve: Curves.easeInToLinear,
                       duration: Duration(
-                        milliseconds: 500,
+                        milliseconds: 1,
                       ),
                       crossFadeState: state,
                       firstChild: Category(kategoriler),
-                      secondChild: Container(
-                        height: 30,
-                        width: MediaQuery.of(context2).size.width - 61,
-                        child: Padding(
-                          padding: EdgeInsets.only(
-                            bottom: 3.0,
-                          ),
-                          child: TextField(
-                            enabled: state != CrossFadeState.showFirst,
-                            cursorColor: Colors.white,
-                            autofocus: false,
-                            style: TextStyle(
-                              color: Colors.white,
-                            ),
-                            decoration: InputDecoration(
-                              helperStyle: TextStyle(
-                                color: Colors.white,
-                              ),
-                              hintStyle: TextStyle(
-                                color: Colors.white,
-                              ),
-                              border: InputBorder.none,
-                              hintText: "Search reports",
-                            ),
-                          ),
-                        ),
-                      ),
+                      secondChild: SearchBar(state != CrossFadeState.showFirst),
                     )
                   ],
                 ),
               ),
             ),
             CurvedPage(
-              Center(
-                child: Text("DENEME"),
+              SingleChildScrollView(
+                child: Column(
+                  children: [
+                    TopicTitle(viewGrid),
+                    Card(
+                      clipBehavior: Clip.antiAlias,
+                      child: Column(
+                        children: [
+                          ListTile(
+                            leading: ProfileButton(() {}),
+                            title: const Text('Işık Üniversitesi Hakkında'),
+                            //trailing: ,
+                            subtitle: Text(
+                              'Secondary Text',
+                              style: TextStyle(color: Colors.black.withOpacity(0.6)),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
               ),
             )
           ],

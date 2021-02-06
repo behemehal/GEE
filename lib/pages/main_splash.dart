@@ -13,6 +13,7 @@ class SplashScreen extends StatefulWidget {
 
 class SplashScreenState extends State<SplashScreen>
     with TickerProviderStateMixin {
+  bool logoVisible = false;
   bool visible = false;
   bool visible2 = false;
   bool visible3 = false;
@@ -33,7 +34,11 @@ class SplashScreenState extends State<SplashScreen>
         .animate(
             CurvedAnimation(parent: slideController, curve: Curves.linear));
 
-    Timer(Duration(milliseconds: 750), () {
+    
+    Timer(Duration(milliseconds: 650), () {
+      setState(() {
+      logoVisible = true;
+    });
       slideController.forward();
       Timer(Duration(milliseconds: 250), () {
         setState(() {
@@ -54,10 +59,14 @@ class SplashScreenState extends State<SplashScreen>
             children: [
               SlideTransition(
                 position: slideAnimation,
-                child: Padding(
-                  padding: EdgeInsets.only(bottom: 20),
-                  child: Image(
-                    image: AssetImage('assets/pictures/icon.png'),
+                child: AnimatedOpacity(
+                  duration: Duration(milliseconds: 700),
+                  opacity: logoVisible ? 1 : 0,
+                  child: Padding(
+                    padding: EdgeInsets.only(bottom: 20),
+                    child: Image(
+                      image: AssetImage('assets/pictures/icon.png'),
+                    ),
                   ),
                 ),
               ),
@@ -83,7 +92,7 @@ class SplashScreenState extends State<SplashScreen>
               ),
               AnimatedOpacity(
                 opacity: visible2 ? 1.0 : 0.0,
-                duration: Duration(milliseconds: 750),
+                duration: Duration(milliseconds: 700),
                 onEnd: () {
                   setState(() {
                     visible3 = true;
@@ -103,7 +112,7 @@ class SplashScreenState extends State<SplashScreen>
               ),
               AnimatedOpacity(
                 opacity: visible3 ? 1.0 : 0.0,
-                duration: Duration(milliseconds: 750),
+                duration: Duration(milliseconds: 700),
                 child: Container(
                   width: 171,
                   child: Text(
