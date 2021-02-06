@@ -19,7 +19,7 @@ class RegisterPageState extends State<RegisterPage> {
       body: Center(
         child: Padding(
           padding: EdgeInsets.only(
-              top: 10,
+              top: 100,
               right: 15,
               left: 15), //Sağdan, soldan ve üstden 10 pixel boşluk bırak
           child: Column(
