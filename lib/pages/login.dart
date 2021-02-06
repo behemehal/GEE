@@ -50,17 +50,7 @@ class LoginPageState extends State<LoginPage> {
                   child: TextField(
                     controller:
                         kullaniciMailKontrolcusu, //Kullanıcının yazdığı şifreyi kontrol etmek için bunu kullanıyoruz
-                    decoration: InputDecoration(
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                              color: Colors.redAccent[700], width: 0),
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(1.0)),
-                          borderSide: BorderSide(
-                              color: Color.fromARGB(158, 1, 49, 1), width: 0.8),
-                        ),
-                        labelText: "Kullanıcı Mail"),
+                    decoration: InputDecoration(labelText: "Kullanıcı Mail"),
                   ),
                 ),
                 Container(
@@ -70,17 +60,7 @@ class LoginPageState extends State<LoginPage> {
                     obscuringCharacter: "*", //şifreyi gizleyecek karakter *****
                     controller:
                         kullaniciSifreKontrolcusu, //Kullanıcının yazdığı şifreyi kontrol etmek için bunu kullanıyoruz
-                    decoration: InputDecoration(
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                              color: Colors.redAccent[700], width: 0),
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(1.0)),
-                          borderSide: BorderSide(
-                              color: Color.fromARGB(158, 1, 49, 1), width: 0.8),
-                        ),
-                        labelText: "Kullanıcı Şifresi"),
+                    decoration: InputDecoration(labelText: "Kullanıcı Şifresi"),
                   ),
                 ),
 
@@ -114,7 +94,7 @@ class LoginPageState extends State<LoginPage> {
                         "Giriş Yap",
                         style: TextStyle(
                             fontSize: 12.0,
-                            color: Color.fromARGB(158, 1, 49, 1)),
+                            color: Color.fromRGBO(158, 1, 49, 1)),
                       ),
                     )),
                 TextButton(
