@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import './ActionChip.dart';
+import 'ActionChip.dart';
 
 class Category extends StatefulWidget {
   Category(this.kategoriler);
@@ -38,14 +38,11 @@ class CategoryState extends State<Category> {
                     });
                   }
                 };
-                return Padding(
-                  padding: EdgeInsets.only(left: index == 0 ? 0 : 5),
-                  child: kategoriler[index].generate(),
-                );
+                return Padding(padding: EdgeInsets.only(left: index == 0 ? 0 : 5), child: kategoriler[index]);
               },
             ),
           ),
-        )
+        ),
       ],
     );
   }

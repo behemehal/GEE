@@ -1,12 +1,7 @@
 import 'package:flutter/material.dart';
 
-class ToolbarActionChipDart {
-  ToolbarActionChipDart(
-      {@required this.onPressed,
-      @required this.tooltip,
-      @required this.text,
-      this.active,
-      @required this.icon});
+class ToolbarActionChipDart extends StatelessWidget {
+  ToolbarActionChipDart({@required this.onPressed, @required this.tooltip, @required this.text, this.active, @required this.icon});
 
   void Function() onPressed;
   final String tooltip;
@@ -14,17 +9,16 @@ class ToolbarActionChipDart {
   bool active;
   final IconData icon;
 
-  ActionChip generate() {
+  @override
+  Widget build(BuildContext context) {
     return ActionChip(
       shadowColor: Colors.transparent,
       tooltip: this.tooltip,
       onPressed: this.onPressed,
       backgroundColor: this.active ? Colors.grey[900] : Colors.white,
       avatar: CircleAvatar(
-        backgroundColor:
-            this.active ? Colors.white : Color.fromRGBO(130, 8, 41, 1.0),
-        child: Icon(this.icon,
-            size: 16.0, color: this.active ? Colors.red : Colors.white),
+        backgroundColor: this.active ? Colors.white : Color.fromRGBO(130, 8, 41, 1.0),
+        child: Icon(this.icon, size: 16.0, color: this.active ? Colors.red : Colors.white),
       ),
       label: Text(
         this.text,

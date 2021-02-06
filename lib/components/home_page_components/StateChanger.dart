@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 
-class StateChanger {
-  StateChanger();
+class StateChanger extends StatelessWidget {
+  StateChanger(this.state, this.onPressed);
 
-  Widget generate(void Function() onPressed) {
+  bool state;
+  void Function() onPressed;
+
+  @override
+  Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.only(
         right: 10.0,
@@ -18,13 +22,13 @@ class StateChanger {
           borderRadius: BorderRadius.circular(
             360,
           ),
-          onTap: onPressed,
+          onTap: this.onPressed,
           child: Padding(
             padding: EdgeInsets.all(
               3.0,
             ),
-            child: const Icon(
-              Icons.search,
+            child: Icon(
+              this.state ? Icons.search : Icons.cancel_presentation,
               size: 25,
               color: Color.fromRGBO(130, 8, 41, 1.0),
             ),
