@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 //Sayfalar
 import 'pages/main_splash.dart';
 import 'pages/home_page.dart';
+import './components/login_components/imagepicker.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -38,7 +39,7 @@ void main() async {
           cursorColor: Color.fromRGBO(100, 100, 100, 1),
         ),
       ),
-      home: SplashScreen(),
+      home: MyHomePage(),
     ),
   );
 }

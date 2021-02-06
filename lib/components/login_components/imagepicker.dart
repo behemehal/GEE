@@ -2,17 +2,6 @@ import 'dart:io';
 import 'package:image_picker/image_picker.dart';
 import 'package:flutter/material.dart';
 
-void main() => runApp(MyApp());
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: MyHomePage(),
-    );
-  }
-}
-
 class MyHomePage extends StatefulWidget {
   @override
   _MyHomePageState createState() => _MyHomePageState();
@@ -22,7 +11,7 @@ class _MyHomePageState extends State<MyHomePage> {
   File _image;
   final picker = ImagePicker();
 
-  Future getImage() async {
+  Future getImage(ImageSource camera) async {
     final pickedFile = await picker.getImage(source: ImageSource.camera);
 
     setState(() {
@@ -36,17 +25,49 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Image Picker Example'),
-      ),
-      body: Center(
-        child: _image == null ? Text('No image selected.') : Image.file(_image),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: getImage,
-        tooltip: 'Pick Image',
-        child: Icon(Icons.add_a_photo),
+    return MaterialApp(
+      title: 'Flutter ImagePicker Example',
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('Flutter Image_Picker Example'),
+        ),
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Center(
+              child: _image != null
+                  ? Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Container(
+                        width: 300,
+                        height: 300,
+                        child: Image.file(
+                          _image,
+                        ),
+                      ),
+                    )
+                  : Padding(
+                      padding: const EdgeInsets.all(18.0),
+                      child: Text('No image selected'),
+                    ),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                ElevatedButton.icon(
+                  onPressed: () => getImage(ImageSource.gallery),
+                  icon: Icon(Icons.image),
+                  label: Text('gallery'),
+                ),
+                ElevatedButton.icon(
+                  onPressed: () => getImage(ImageSource.camera),
+                  icon: Icon(Icons.camera),
+                  label: Text('camera'),
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
