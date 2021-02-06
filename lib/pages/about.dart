@@ -14,6 +14,10 @@ class AboutPageState extends State<AboutPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text("Hakkında"),
+        backgroundColor: Color.fromRGBO(130, 8, 41, 1.0),
+      ),
       body: Container(
         color: Colors.white,
         child: Center(
@@ -21,9 +25,12 @@ class AboutPageState extends State<AboutPage> {
             padding: EdgeInsets.only(top: 20, right: 15, left: 15), //Sağdan, soldan ve üstden 10 pixel boşluk bırak
             child: Column(
               children: [
+                Image(
+                  image: AssetImage('assets/pictures/icon.png'),
+                ),
                 Text(
                   "Gönüllü Eşit Eğitim",
-                  style: TextStyle(fontSize: 36, fontFamily: "Montserrat"),
+                  style: TextStyle(fontSize: 30, fontFamily: "Montserrat"),
                 ),
               ],
             ),
