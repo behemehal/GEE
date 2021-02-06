@@ -39,7 +39,7 @@ void main() async {
           cursorColor: Color.fromRGBO(100, 100, 100, 1),
         ),
       ),
-      home: MyHomePage(),
+      home: SplashScreen(),
     ),
   );
 }
