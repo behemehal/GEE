@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 
 //Sayfalar
 import 'pages/main_splash.dart';
+import 'pages/home_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -13,7 +14,7 @@ void main() async {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: SplashScreen(),
+      home: HomePage(),
     ),
   );
 }
