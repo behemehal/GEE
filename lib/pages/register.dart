@@ -69,35 +69,29 @@ class RegisterPageState extends State<RegisterPage> {
                 padding: EdgeInsets.only(top: 10),
                 child: TextButton(
                   //Giriş Butonu
-                  onPressed: () async {
-                    if (kullaniciMailKontrolcusu.text.trim() == "") {
-                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                        content: Text("Mail Boş Olamaz!"),
-                      ));
-                    } else if (kullaniciSifreDogrulayici.text.trim() == "") {
-                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                        content: Text("Şifre Boş Olamaz!"),
-                      ));
-                    } else if (kullaniciSifreDogrulayici.text.trim() != kullaniciSifreKontrolcusu.text.trim()) {
-                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                        content: Text("Şifreler Eşleşmedi!"),
-                      ));
-                    } else {
-                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                        content: Text("Giriş Başarılı"),
-                      ));
-                    }
-                  },
+                  onPressed: () async {},
                   child: ElevatedButton.icon(
+                    style: ElevatedButton.styleFrom(primary: Color.fromRGBO(158, 1, 49, 1)),
                     onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => LoginPage(),
-                        ),
-                      );
+                      if (kullaniciMailKontrolcusu.text.trim() == "") {
+                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                          content: Text("Mail Boş Olamaz!"),
+                        ));
+                      } else if (kullaniciSifreDogrulayici.text.trim() == "") {
+                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                          content: Text("Şifre Boş Olamaz!"),
+                        ));
+                      } else if (kullaniciSifreDogrulayici.text.trim() != kullaniciSifreKontrolcusu.text.trim()) {
+                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                          content: Text("Şifreler Eşleşmedi!"),
+                        ));
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                          content: Text("Giriş Başarılı"),
+                        ));
+                      }
                     },
-                    icon: Icon(Icons.arrow_circle_down, size: 8),
+                    icon: Icon(Icons.app_registration, size: 10),
                     label: Text("Kayıt ol"),
                   ),
                 ),
@@ -117,6 +111,7 @@ class RegisterPageState extends State<RegisterPage> {
                     Navigator.of(context).pop();
                   },
                   child: ElevatedButton.icon(
+                    style: ElevatedButton.styleFrom(primary: Color.fromRGBO(158, 1, 49, 1)),
                     onPressed: () {
                       Navigator.push(
                         context,
@@ -125,7 +120,7 @@ class RegisterPageState extends State<RegisterPage> {
                         ),
                       );
                     },
-                    icon: Icon(Icons.arrow_circle_down, size: 8),
+                    icon: Icon(Icons.backspace, size: 10),
                     label: Text("Mevcut Hesaba Giriş Yap"),
                   ))
             ],
