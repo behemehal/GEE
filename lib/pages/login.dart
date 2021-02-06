@@ -1,7 +1,9 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:gee/pages/home_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'register.dart';
+import 'home_page.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -25,10 +27,7 @@ class LoginPageState extends State<LoginPage> {
         color: Colors.white,
         child: Center(
           child: Padding(
-            padding: EdgeInsets.only(
-                top: 20,
-                right: 15,
-                left: 15), //Sağdan, soldan ve üstden 10 pixel boşluk bırak
+            padding: EdgeInsets.only(top: 20, right: 15, left: 15), //Sağdan, soldan ve üstden 10 pixel boşluk bırak
             child: Column(
               children: [
                 Text(
@@ -44,12 +43,10 @@ class LoginPageState extends State<LoginPage> {
                   padding: EdgeInsets.only(top: 22),
                 ),
                 Container(
-                  padding: EdgeInsets.only(
-                      top: MediaQuery.of(context).size.height / 6),
+                  padding: EdgeInsets.only(top: MediaQuery.of(context).size.height / 6),
                   margin: EdgeInsets.all(10),
                   child: TextField(
-                    controller:
-                        kullaniciMailKontrolcusu, //Kullanıcının yazdığı şifreyi kontrol etmek için bunu kullanıyoruz
+                    controller: kullaniciMailKontrolcusu, //Kullanıcının yazdığı şifreyi kontrol etmek için bunu kullanıyoruz
                     decoration: InputDecoration(labelText: "Kullanıcı Mail"),
                   ),
                 ),
@@ -58,14 +55,12 @@ class LoginPageState extends State<LoginPage> {
                   child: TextField(
                     obscureText: true, //Yazı gizlensin mi
                     obscuringCharacter: "*", //şifreyi gizleyecek karakter *****
-                    controller:
-                        kullaniciSifreKontrolcusu, //Kullanıcının yazdığı şifreyi kontrol etmek için bunu kullanıyoruz
+                    controller: kullaniciSifreKontrolcusu, //Kullanıcının yazdığı şifreyi kontrol etmek için bunu kullanıyoruz
                     decoration: InputDecoration(labelText: "Kullanıcı Şifresi"),
                   ),
                 ),
 
-                Text(
-                    statusText), //Kullanıcının Mail ve ya şifre hakkında bilgi aldığı element
+                Text(statusText), //Kullanıcının Mail ve ya şifre hakkında bilgi aldığı element
                 TextButton(
                     //Giriş Butonu
 
@@ -86,15 +81,19 @@ class LoginPageState extends State<LoginPage> {
                     },
                     child: TextButton(
                       style: ButtonStyle(
-                        backgroundColor:
-                            MaterialStateProperty.all<Color>(Colors.red),
+                        backgroundColor: MaterialStateProperty.all<Color>(Colors.red),
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => HomePage(),
+                          ),
+                        );
+                      },
                       child: Text(
                         "Giriş Yap",
-                        style: TextStyle(
-                            fontSize: 12.0,
-                            color: Color.fromRGBO(158, 1, 49, 1)),
+                        style: TextStyle(fontSize: 12.0, color: Color.fromRGBO(158, 1, 49, 1)),
                       ),
                     )),
                 TextButton(
@@ -106,7 +105,10 @@ class LoginPageState extends State<LoginPage> {
                       ),
                     );
                   },
-                  child: Text("Kayıt Ol"),
+                  child: Text(
+                    "Kayıt Ol",
+                    style: TextStyle(fontSize: 12.0, color: Color.fromRGBO(158, 1, 49, 1)),
+                  ),
                 )
               ],
             ),
