@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:gee/pages/login.dart';
 
 class RegisterPage extends StatefulWidget {
   @override
@@ -87,12 +88,17 @@ class RegisterPageState extends State<RegisterPage> {
                       ));
                     }
                   },
-                  child: Text(
-                    "Kayıt Ol",
-                    style: TextStyle(fontFamily: "Montserrat", color: Colors.white),
-                  ),
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all<Color>(Color.fromRGBO(158, 1, 49, 1)),
+                  child: ElevatedButton.icon(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => LoginPage(),
+                        ),
+                      );
+                    },
+                    icon: Icon(Icons.arrow_circle_down, size: 8),
+                    label: Text("Kayıt ol"),
                   ),
                 ),
               ),
@@ -106,18 +112,22 @@ class RegisterPageState extends State<RegisterPage> {
                   ),
                 ),
               ),
-
               TextButton(
                   onPressed: () {
                     Navigator.of(context).pop();
                   },
-                  child: Text(
-                    "Mevcut Hesaba Giriş Yap",
-                    style: TextStyle(fontFamily: "Montserrat", color: Colors.white),
-                  ),
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all<Color>(Color.fromRGBO(158, 1, 49, 1)),
-                  )),
+                  child: ElevatedButton.icon(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => LoginPage(),
+                        ),
+                      );
+                    },
+                    icon: Icon(Icons.arrow_circle_down, size: 8),
+                    label: Text("Mevcut Hesaba Giriş Yap"),
+                  ))
             ],
           ),
         ),
