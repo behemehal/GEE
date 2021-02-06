@@ -85,6 +85,7 @@ class LoginPageState extends State<LoginPage> {
                 ),
 
                 ElevatedButton.icon(
+                  style: ElevatedButton.styleFrom(primary: Color.fromRGBO(158, 1, 49, 1)),
                   onPressed: () {
                     Navigator.push(
                       context,
@@ -107,6 +108,7 @@ class LoginPageState extends State<LoginPage> {
                   ),
                 ),
                 ElevatedButton.icon(
+                  style: ElevatedButton.styleFrom(primary: Color.fromRGBO(158, 1, 49, 1)),
                   onPressed: () {
                     Navigator.push(
                       context,
