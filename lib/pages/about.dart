@@ -28,9 +28,28 @@ class AboutPageState extends State<AboutPage> {
                 Image(
                   image: AssetImage('assets/pictures/icon.png'),
                 ),
+                Padding(
+                  padding: EdgeInsets.only(top: 10, bottom: 10),
+                  child: Text(
+                    "Gönüllü Eşit Eğitim",
+                    style: TextStyle(fontSize: 30, fontFamily: "Montserrat"),
+                  ),
+                ),
                 Text(
-                  "Gönüllü Eşit Eğitim",
-                  style: TextStyle(fontSize: 30, fontFamily: "Montserrat"),
+                  "Oğuzhan Saday",
+                  style: TextStyle(fontSize: 14, fontFamily: "Montserrat"),
+                ),
+                Text(
+                  "Besim Mert Aydar",
+                  style: TextStyle(fontSize: 14, fontFamily: "Montserrat"),
+                ),
+                Text(
+                  "Ahmetcan Aksu",
+                  style: TextStyle(fontSize: 14, fontFamily: "Montserrat"),
+                ),
+                Text(
+                  "Tuna Durmaz",
+                  style: TextStyle(fontSize: 14, fontFamily: "Montserrat"),
                 ),
               ],
             ),
