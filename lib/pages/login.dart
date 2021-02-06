@@ -81,7 +81,7 @@ class LoginPageState extends State<LoginPage> {
                       ));
                     }
                   },
-                  child: Text("test"),
+                  child: Text(""),
                 ),
 
                 ElevatedButton.icon(
@@ -93,9 +93,33 @@ class LoginPageState extends State<LoginPage> {
                       ),
                     );
                   },
-                  icon: Icon(Icons.arrow_circle_down, size: 8),
-                  label: Text("Giriş Yap"),
-                  /*onPressed: () {
+                  icon: Icon(Icons.login, size: 12),
+                  label: Text("Giriş Yap", style: TextStyle(fontSize: 12.0, color: Colors.white)),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(top: 10, bottom: 10),
+                  child: Text(
+                    "Veya",
+                    style: TextStyle(
+                      fontFamily: "Montserrat",
+                      color: Color.fromRGBO(100, 100, 100, 1),
+                    ),
+                  ),
+                ),
+                ElevatedButton.icon(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => RegisterPage(),
+                      ),
+                    );
+                  },
+                  icon: Icon(Icons.app_registration, size: 12),
+                  label: Text("Kayıt ol", style: TextStyle(fontSize: 12.0, color: Colors.white)),
+                ),
+
+                /*onPressed: () {s
                     Navigator.push(
                       context,
                       MaterialPageRoute(
@@ -107,7 +131,6 @@ class LoginPageState extends State<LoginPage> {
                     "Kayıt Ol",
                     style: TextStyle(fontSize: 12.0, color: Color.fromRGBO(158, 1, 49, 1)),
                   ),*/
-                )
               ],
             ),
           ),
