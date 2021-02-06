@@ -11,8 +11,7 @@ class SplashScreen extends StatefulWidget {
   SplashScreenState createState() => SplashScreenState();
 }
 
-class SplashScreenState extends State<SplashScreen>
-    with TickerProviderStateMixin {
+class SplashScreenState extends State<SplashScreen> with TickerProviderStateMixin {
   bool logoVisible = false;
   bool visible = false;
   bool visible2 = false;
@@ -30,15 +29,13 @@ class SplashScreenState extends State<SplashScreen>
       vsync: this,
     );
 
-    slideAnimation = Tween<Offset>(begin: Offset(0, 1.2), end: Offset(0.0, 0.0))
-        .animate(
-            CurvedAnimation(parent: slideController, curve: Curves.linear));
+    slideAnimation =
+        Tween<Offset>(begin: Offset(0, 1.2), end: Offset(0.0, 0.0)).animate(CurvedAnimation(parent: slideController, curve: Curves.linear));
 
-    
     Timer(Duration(milliseconds: 650), () {
       setState(() {
-      logoVisible = true;
-    });
+        logoVisible = true;
+      });
       slideController.forward();
       Timer(Duration(milliseconds: 250), () {
         setState(() {
@@ -53,8 +50,7 @@ class SplashScreenState extends State<SplashScreen>
     return Scaffold(
       body: Center(
         child: Padding(
-          padding: EdgeInsets.only(
-              top: (MediaQuery.of(context).size.height / 4) - 50),
+          padding: EdgeInsets.only(top: (MediaQuery.of(context).size.height / 4) - 50),
           child: Column(
             children: [
               SlideTransition(
@@ -155,7 +151,7 @@ class SplashScreenState extends State<SplashScreen>
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => ProfilPage(),
+                      builder: (context) => ProfilPage(true),
                     ),
                   );
                 },

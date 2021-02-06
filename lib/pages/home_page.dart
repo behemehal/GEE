@@ -73,7 +73,7 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => ProfilPage(),
+                  builder: (context) => ProfilPage(true),
                 ),
               );
             }),
