@@ -18,10 +18,7 @@ class RegisterPageState extends State<RegisterPage> {
     return Scaffold(
       body: Center(
         child: Padding(
-          padding: EdgeInsets.only(
-              top: 100,
-              right: 15,
-              left: 15), //Sağdan, soldan ve üstden 10 pixel boşluk bırak
+          padding: EdgeInsets.only(top: 10, right: 15, left: 15), //Sağdan, soldan ve üstden 10 pixel boşluk bırak
           child: Column(
             children: [
               Text(
@@ -29,25 +26,19 @@ class RegisterPageState extends State<RegisterPage> {
                 style: TextStyle(fontSize: 36, fontFamily: "Montserrat"),
               ),
 
+              Padding(padding: EdgeInsets.only(top: 5)),
               Text(
                 "Aramıza Katıl",
                 style: TextStyle(fontSize: 14, fontFamily: "Montserrat"),
               ),
               Container(
+                padding: EdgeInsets.only(
+                  top: 100,
+                ),
                 margin: EdgeInsets.all(10),
                 child: TextField(
-                  controller:
-                      kullaniciMailKontrolcusu, //Kullanıcının yazdığı şifreyi kontrol etmek için bunu kullanıyoruz
-                  decoration: InputDecoration(
-                      focusedBorder: OutlineInputBorder(
-                        borderSide:
-                            BorderSide(color: Colors.redAccent[700], width: 0),
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(1.0)),
-                        borderSide: BorderSide(color: Colors.red, width: 0.8),
-                      ),
-                      labelText: "Kullanıcı Maili"),
+                  controller: kullaniciMailKontrolcusu, //Kullanıcının yazdığı şifreyi kontrol etmek için bunu kullanıyoruz
+                  decoration: InputDecoration(labelText: "Kullanıcı Maili"),
                 ),
               ),
               Container(
@@ -55,18 +46,8 @@ class RegisterPageState extends State<RegisterPage> {
                 child: TextField(
                   obscureText: true, //Yazı gizlensin mi
                   obscuringCharacter: "*", //şifreyi gizleyecek karakter *****
-                  controller:
-                      kullaniciSifreKontrolcusu, //Kullanıcının yazdığı şifreyi kontrol etmek için bunu kullanıyoruz
-                  decoration: InputDecoration(
-                      focusedBorder: OutlineInputBorder(
-                        borderSide:
-                            BorderSide(color: Colors.redAccent[700], width: 0),
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(1.0)),
-                        borderSide: BorderSide(color: Colors.red, width: 0.8),
-                      ),
-                      labelText: "Şifre Giriniz"),
+                  controller: kullaniciSifreKontrolcusu, //Kullanıcının yazdığı şifreyi kontrol etmek için bunu kullanıyoruz
+                  decoration: InputDecoration(labelText: "Şifre Giriniz"),
                 ),
               ),
               Container(
@@ -74,25 +55,18 @@ class RegisterPageState extends State<RegisterPage> {
                 child: TextField(
                   obscureText: true, //Yazı gizlensin mi
                   obscuringCharacter: "*", //şifreyi gizleyecek karakter *****
-                  controller:
-                      kullaniciSifreDogrulayici, //Kullanıcının yazdığı şifreyi kontrol etmek için bunu kullanıyoruz
-                  decoration: InputDecoration(
-                      focusedBorder: OutlineInputBorder(
-                        borderSide:
-                            BorderSide(color: Colors.redAccent[700], width: 0),
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(1.0)),
-                        borderSide: BorderSide(color: Colors.red, width: 0.8),
-                      ),
-                      labelText: "Şifre Doğrulama"),
+                  controller: kullaniciSifreDogrulayici, //Kullanıcının yazdığı şifreyi kontrol etmek için bunu kullanıyoruz
+                  decoration: InputDecoration(labelText: "Şifre Doğrulama"),
                 ),
               ),
+
               Padding(
                 padding: EdgeInsets.only(top: 20),
                 child: Text(statusText),
               ), //Kullanıcının Mail ve ya şifre hakkında bilgi aldığı element
-              TextButton(
+              Padding(
+                padding: EdgeInsets.only(top: 10),
+                child: TextButton(
                   //Giriş Butonu
                   onPressed: () async {
                     if (kullaniciMailKontrolcusu.text.trim() == "") {
@@ -103,6 +77,10 @@ class RegisterPageState extends State<RegisterPage> {
                       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                         content: Text("Şifre Boş Olamaz!"),
                       ));
+                    } else if (kullaniciSifreDogrulayici.text.trim() != kullaniciSifreKontrolcusu.text.trim()) {
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                        content: Text("Şifreler Eşleşmedi!"),
+                      ));
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                         content: Text("Giriş Başarılı"),
@@ -111,25 +89,34 @@ class RegisterPageState extends State<RegisterPage> {
                   },
                   child: Text(
                     "Kayıt Ol",
-                    style: TextStyle(color: Colors.white),
+                    style: TextStyle(fontFamily: "Montserrat", color: Colors.white),
                   ),
                   style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all<Color>(
-                        Color.fromRGBO(158, 1, 49, 1)),
-                  )),
+                    backgroundColor: MaterialStateProperty.all<Color>(Color.fromRGBO(158, 1, 49, 1)),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.only(top: 10, bottom: 10),
+                child: Text(
+                  "Veya",
+                  style: TextStyle(
+                    fontFamily: "Montserrat",
+                    color: Color.fromRGBO(100, 100, 100, 1),
+                  ),
+                ),
+              ),
 
-              Text("veya"),
               TextButton(
                   onPressed: () {
                     Navigator.of(context).pop();
                   },
                   child: Text(
                     "Mevcut Hesaba Giriş Yap",
-                    style: TextStyle(color: Colors.white),
+                    style: TextStyle(fontFamily: "Montserrat", color: Colors.white),
                   ),
                   style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all<Color>(
-                        Color.fromRGBO(158, 1, 49, 1)),
+                    backgroundColor: MaterialStateProperty.all<Color>(Color.fromRGBO(158, 1, 49, 1)),
                   )),
             ],
           ),
