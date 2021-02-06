@@ -13,6 +13,8 @@ import '../components/home_page_components/TopicTitle.dart';
 import '../components/home_page_components/PostRate.dart';
 import '../components/home_page_components/IconLabel.dart';
 
+import '../utils/markdown_formatter.dart';
+
 class HomePage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => HomePageState();
@@ -157,15 +159,20 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
                       child: Column(
                         children: [
                           ListTile(
-                            leading: ProfileButton(() {}),
+                            leading: ProfileButton(() {
+                              ProfilPage(true);
+                            }),
                             title: const Text('Işık Üniversitesi Hakkında'),
                             trailing: PostRate(7, 3),
-                            subtitle: Text(
-                              'Arkadaşlar bilgisayar programcılığı böülümüne bu yıl girdim, sıraya yazarken kampüsün yerini yazmamışım. Acaba bilgisayar programcılığı bölümünün yeri nerede bilen varsa çok iyi olur,',
-                              style: TextStyle(color: Colors.black.withOpacity(0.6)),
+                            subtitle: MarkdownFormatter(
+                              "**test tesdsa**",
                             ),
                           ),
-                          IconLabel(Icons.visibility, "100k")
+                          IconLabel(
+                            Icons.visibility,
+                            "100k",
+                            iconColor: Colors.red,
+                          )
                         ],
                       ),
                     ),
