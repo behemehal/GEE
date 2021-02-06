@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gee/components/home_page_components/Category.dart';
 
 import '../pages/profil.dart';
+import '../pages/create_post.dart';
 
 import '../components/home_page_components/StateChanger.dart';
 import '../components/home_page_components/ActionChip.dart';
@@ -72,7 +73,7 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => ProfilPage(true),
+                  builder: (context) => ProfilPage(true, "test"),
                 ),
               );
             }),
@@ -91,6 +92,19 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
         bottomOpacity: 0.0,
         elevation: 0.0,
         actions: [],
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => CreatePost(
+              false,
+              "postID",
+            ),
+          ),
+        ),
+        backgroundColor: Color.fromRGBO(130, 8, 41, 1.0),
+        child: Icon(Icons.add),
       ),
       body: Container(
         height: MediaQuery.of(context).size.height,

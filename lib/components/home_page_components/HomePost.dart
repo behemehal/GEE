@@ -41,7 +41,14 @@ class HomePost extends StatelessWidget {
               child: Image.network(this.postPicURL),
             ),
           ListTile(
-            leading: ProfileButton(() => ProfilPage(true)),
+            leading: ProfileButton(
+              () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ProfilPage(false, "Test"),
+                ),
+              ),
+            ),
             title: Text(
               this.title,
               style: TextStyle(fontFamily: "Montserrat"),

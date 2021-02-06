@@ -1,36 +1,16 @@
-import 'dart:html';
-
 import 'package:flutter/material.dart';
 import 'package:gee/pages/register.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../utils/markdown_formatter.dart';
 
 class ProfilPage extends StatefulWidget {
-  ProfilPage(this.edit, this.username, this.sehir, this.il, this.okul, this.rol, this.id);
-  bool edit;
-  String id;
-  String username;
-  String sehir;
-  String il;
-  String okul;
-  String rol;
-  String url;
-  int cevap;
-  int followers;
-  String description;
+  ProfilPage(this.edit, this.id);
+  final bool edit;
+  final String id;
 
   @override
   ProfilPageState createState() => ProfilPageState(
         this.edit,
-        this.username,
-        this.sehir,
-        this.il,
-        this.okul,
-        this.rol,
-        this.url,
-        this.cevap,
-        this.followers,
-        this.description,
         this.id,
       );
 }
@@ -77,19 +57,10 @@ class CustomListTile extends StatelessWidget {
 }
 
 class ProfilPageState extends State<ProfilPage> {
-  ProfilPageState(
-      this.edit, this.username, this.sehir, this.il, this.okul, this.rol, this.url, this.cevap, this.followers, this.description, this.id);
-  bool edit;
-  String username;
-  String sehir;
-  String il;
-  String okul;
-  String rol;
-  String url;
-  String id;
-  int cevap;
-  int followers;
-  String description;
+  ProfilPageState(this.edit, this.id);
+  final bool edit;
+  final String id;
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text("")),
@@ -267,7 +238,7 @@ class ProfilPageState extends State<ProfilPage> {
                 Container(
                   child: Padding(
                     padding: const EdgeInsets.all(15.0),
-                    child: MarkdownFormatter(this.description),
+                    child: MarkdownFormatter("Düzenlenecek"),
                   ),
                 )
             ],
