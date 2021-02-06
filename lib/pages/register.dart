@@ -93,31 +93,44 @@ class RegisterPageState extends State<RegisterPage> {
                 child: Text(statusText),
               ), //Kullanıcının Mail ve ya şifre hakkında bilgi aldığı element
               TextButton(
-                //Giriş Butonu
-                onPressed: () async {
-                  if (kullaniciMailKontrolcusu.text.trim() == "") {
-                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                      content: Text("Mail Boş Olamaz!"),
-                    ));
-                  } else if (kullaniciSifreDogrulayici.text.trim() == "") {
-                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                      content: Text("Şifre Boş Olamaz!"),
-                    ));
-                  } else {
-                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                      content: Text("Giriş Başarılı"),
-                    ));
-                  }
-                },
-                child: Text("Kayıt Ol"),
-              ),
+                  //Giriş Butonu
+                  onPressed: () async {
+                    if (kullaniciMailKontrolcusu.text.trim() == "") {
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                        content: Text("Mail Boş Olamaz!"),
+                      ));
+                    } else if (kullaniciSifreDogrulayici.text.trim() == "") {
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                        content: Text("Şifre Boş Olamaz!"),
+                      ));
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                        content: Text("Giriş Başarılı"),
+                      ));
+                    }
+                  },
+                  child: Text(
+                    "Kayıt Ol",
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all<Color>(
+                        Color.fromRGBO(158, 1, 49, 1)),
+                  )),
+
               Text("veya"),
               TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                child: Text("Mevcut Hesaba Giriş Yap"),
-              ),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: Text(
+                    "Mevcut Hesaba Giriş Yap",
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all<Color>(
+                        Color.fromRGBO(158, 1, 49, 1)),
+                  )),
             ],
           ),
         ),
