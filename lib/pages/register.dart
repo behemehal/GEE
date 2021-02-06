@@ -26,6 +26,7 @@ class RegisterPageState extends State<RegisterPage> {
                 style: TextStyle(fontSize: 36, fontFamily: "Montserrat"),
               ),
 
+              Padding(padding: EdgeInsets.only(top: 5)),
               Text(
                 "Aramıza Katıl",
                 style: TextStyle(fontSize: 14, fontFamily: "Montserrat"),
