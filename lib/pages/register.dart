@@ -19,7 +19,7 @@ class RegisterPageState extends State<RegisterPage> {
       body: Center(
         child: Padding(
           padding: EdgeInsets.only(
-              top: 10,
+              top: 100,
               right: 15,
               left: 15), //Sağdan, soldan ve üstden 10 pixel boşluk bırak
           child: Column(
@@ -93,34 +93,44 @@ class RegisterPageState extends State<RegisterPage> {
                 child: Text(statusText),
               ), //Kullanıcının Mail ve ya şifre hakkında bilgi aldığı element
               TextButton(
-                //Giriş Butonu
-                onPressed: () async {
-                  var appPrefences = await SharedPreferences.getInstance();
+                  //Giriş Butonu
+                  onPressed: () async {
+                    if (kullaniciMailKontrolcusu.text.trim() == "") {
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                        content: Text("Mail Boş Olamaz!"),
+                      ));
+                    } else if (kullaniciSifreDogrulayici.text.trim() == "") {
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                        content: Text("Şifre Boş Olamaz!"),
+                      ));
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                        content: Text("Giriş Başarılı"),
+                      ));
+                    }
+                  },
+                  child: Text(
+                    "Kayıt Ol",
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all<Color>(
+                        Color.fromRGBO(158, 1, 49, 1)),
+                  )),
 
-                  if (kullaniciSifreKontrolcusu.text ==
-                      kullaniciSifreDogrulayici.text) {
-                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                      content: Text("Kayıt Başarılı."),
-                    ));
-                    appPrefences.setString(kullaniciMailKontrolcusu.text,
-                        kullaniciSifreKontrolcusu.text);
-                    Navigator.of(context, rootNavigator: true)
-                        .pop(); //Geri gitme
-                  } else {
-                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                      content: Text("Şifreniz Doğrulanamadı."),
-                    ));
-                  }
-                },
-                child: Text("Kayıt Ol"),
-              ),
               Text("veya"),
               TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                child: Text("Mevcut Hesaba Giriş Yap"),
-              ),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: Text(
+                    "Mevcut Hesaba Giriş Yap",
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all<Color>(
+                        Color.fromRGBO(158, 1, 49, 1)),
+                  )),
             ],
           ),
         ),

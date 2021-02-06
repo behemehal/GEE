@@ -9,15 +9,14 @@ class LoginPage extends StatefulWidget {
 }
 
 class LoginPageState extends State<LoginPage> {
-  String statusText = "Lütfen Mail ve Şifre Girin";
+  String statusText = " ";
 
   TextEditingController kullaniciMailKontrolcusu = TextEditingController();
   TextEditingController kullaniciSifreKontrolcusu = TextEditingController();
   @override
   void initState() {
     super.initState();
-    //Sayfa açıldıkdan sonra bura çalışır
-  }
+  } //Sayfa açıldıkdan sonra bura çalışır
 
   @override
   Widget build(BuildContext context) {
@@ -58,8 +57,8 @@ class LoginPageState extends State<LoginPage> {
                         ),
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(1.0)),
-                          borderSide:
-                              BorderSide(color: Colors.red[600], width: 0.8),
+                          borderSide: BorderSide(
+                              color: Color.fromARGB(158, 1, 49, 1), width: 0.8),
                         ),
                         labelText: "Kullanıcı Mail"),
                   ),
@@ -78,7 +77,8 @@ class LoginPageState extends State<LoginPage> {
                         ),
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(1.0)),
-                          borderSide: BorderSide(color: Colors.red, width: 0.8),
+                          borderSide: BorderSide(
+                              color: Color.fromARGB(158, 1, 49, 1), width: 0.8),
                         ),
                         labelText: "Kullanıcı Şifresi"),
                   ),
@@ -87,31 +87,36 @@ class LoginPageState extends State<LoginPage> {
                 Text(
                     statusText), //Kullanıcının Mail ve ya şifre hakkında bilgi aldığı element
                 TextButton(
-                  //Giriş Butonu
-                  onPressed: () async {
-                    var appPrefences = await SharedPreferences.getInstance();
-                    if (appPrefences
-                        .containsKey(kullaniciMailKontrolcusu.text)) {
-                      if (kullaniciSifreKontrolcusu.text ==
-                          appPrefences
-                              .getString(kullaniciMailKontrolcusu.text)) {
+                    //Giriş Butonu
+
+                    onPressed: () async {
+                      if (kullaniciMailKontrolcusu.text.trim() == "") {
                         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                          content: Text("Giriş Başarılı."),
+                          content: Text("Mail Boş Olamaz!."),
+                        ));
+                      } else if (kullaniciSifreKontrolcusu.text.trim() == "") {
+                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                          content: Text("Sifre Boş Olamaz!."),
                         ));
                       } else {
                         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                          content: Text("Giriş Başarısız."),
+                          content: Text("Giriş Başarılı."),
                         ));
                       }
-                    } else {
-                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                        content:
-                            Text("Geçerli Mail İle Eşleşen Hesap Bulunamadı."),
-                      ));
-                    }
-                  },
-                  child: Text("Giriş Yap"),
-                ),
+                    },
+                    child: TextButton(
+                      style: ButtonStyle(
+                        backgroundColor:
+                            MaterialStateProperty.all<Color>(Colors.red),
+                      ),
+                      onPressed: () {},
+                      child: Text(
+                        "Giriş Yap",
+                        style: TextStyle(
+                            fontSize: 12.0,
+                            color: Color.fromARGB(158, 1, 49, 1)),
+                      ),
+                    )),
                 TextButton(
                   onPressed: () {
                     Navigator.push(
