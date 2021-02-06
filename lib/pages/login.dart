@@ -1,7 +1,9 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:gee/pages/home_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'register.dart';
+import 'home_page.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -81,7 +83,14 @@ class LoginPageState extends State<LoginPage> {
                       style: ButtonStyle(
                         backgroundColor: MaterialStateProperty.all<Color>(Colors.red),
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => HomePage(),
+                          ),
+                        );
+                      },
                       child: Text(
                         "Giriş Yap",
                         style: TextStyle(fontSize: 12.0, color: Color.fromRGBO(158, 1, 49, 1)),
