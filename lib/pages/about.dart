@@ -51,6 +51,17 @@ class AboutPageState extends State<AboutPage> {
                   "Tuna Durmaz",
                   style: TextStyle(fontSize: 14, fontFamily: "Montserrat"),
                 ),
+                Card(
+                  clipBehavior: Clip.antiAlias,
+                  child: Column(
+                    children: [
+                      ListTile(
+                        subtitle: Text(
+                            " Bu uygululama öğrencilerin aynı bilgiyi eşit imkanlarla ücretsiz olarak ulaşabilmeleri ve gerektiğinde uzman kişiler ile bağlantı kurabilecekleri bir platfor kurmayı amaçlamaktadır."),
+                      ),
+                    ],
+                  ),
+                )
               ],
             ),
           ),
