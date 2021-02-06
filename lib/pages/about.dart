@@ -28,10 +28,40 @@ class AboutPageState extends State<AboutPage> {
                 Image(
                   image: AssetImage('assets/pictures/icon.png'),
                 ),
-                Text(
-                  "Gönüllü Eşit Eğitim",
-                  style: TextStyle(fontSize: 30, fontFamily: "Montserrat"),
+                Padding(
+                  padding: EdgeInsets.only(top: 10, bottom: 10),
+                  child: Text(
+                    "Gönüllü Eşit Eğitim",
+                    style: TextStyle(fontSize: 30, fontFamily: "Montserrat"),
+                  ),
                 ),
+                Text(
+                  "Oğuzhan Saday",
+                  style: TextStyle(fontSize: 14, fontFamily: "Montserrat"),
+                ),
+                Text(
+                  "Besim Mert Aydar",
+                  style: TextStyle(fontSize: 14, fontFamily: "Montserrat"),
+                ),
+                Text(
+                  "Ahmetcan Aksu",
+                  style: TextStyle(fontSize: 14, fontFamily: "Montserrat"),
+                ),
+                Text(
+                  "Tuna Durmaz",
+                  style: TextStyle(fontSize: 14, fontFamily: "Montserrat"),
+                ),
+                Card(
+                  clipBehavior: Clip.antiAlias,
+                  child: Column(
+                    children: [
+                      ListTile(
+                        subtitle: Text(
+                            " Bu uygululama öğrencilerin aynı bilgiyi eşit imkanlarla ücretsiz olarak ulaşabilmeleri ve gerektiğinde uzman kişiler ile bağlantı kurabilecekleri bir platfor kurmayı amaçlamaktadır."),
+                      ),
+                    ],
+                  ),
+                )
               ],
             ),
           ),
