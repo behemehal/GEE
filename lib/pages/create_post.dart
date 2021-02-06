@@ -26,7 +26,7 @@ class CreatePostState extends State<CreatePost> {
   TextEditingController detail = TextEditingController();
 
   @override
-  Widget init() {
+  void initState() {
     super.initState();
     detail.addListener(() {
       setState(() {});
@@ -46,11 +46,33 @@ class CreatePostState extends State<CreatePost> {
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
-              Container(
-                padding: EdgeInsets.only(top: 20),
-                width: 500,
-                height: 250,
-                color: Color.fromRGBO(100, 100, 100, 1),
+              Padding(
+                padding: EdgeInsets.only(bottom: 10),
+                child: Container(
+                  width: 500,
+                  height: 250,
+                  color: Color.fromRGBO(100, 100, 100, 1),
+                  child: Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(
+                          Icons.camera_alt,
+                          size: 66,
+                          color: Colors.white,
+                        ),
+                        Text(
+                          "Resim Eklemek İçin Tıkla",
+                          style: TextStyle(
+                            fontFamily: "Montserrat",
+                            fontSize: 16,
+                            color: Colors.white,
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
               ),
               TextField(
                 decoration: InputDecoration(

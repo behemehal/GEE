@@ -13,6 +13,7 @@ class RegisterPageState extends State<RegisterPage> {
   TextEditingController kullaniciMailKontrolcusu = TextEditingController();
   TextEditingController kullaniciSifreKontrolcusu = TextEditingController();
   TextEditingController kullaniciSifreDogrulayici = TextEditingController();
+  int accountType = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -98,6 +99,28 @@ class RegisterPageState extends State<RegisterPage> {
                     label: Text("Kayıt ol"),
                   ),
                 ),
+              ),
+              DropdownButton(
+                value: accountType,
+                icon: Icon(Icons.arrow_downward),
+                iconSize: 24,
+                elevation: 16,
+                style: TextStyle(color: Colors.deepPurple),
+                underline: Container(
+                  height: 2,
+                  color: Colors.deepPurpleAccent,
+                ),
+                onChanged: (int newValue) {
+                  setState(() {
+                    accountType = newValue;
+                  });
+                },
+                items: [0, 1].map<DropdownMenuItem<int>>((int value) {
+                  return DropdownMenuItem<int>(
+                    value: value,
+                    child: Text(value == 0 ? "Öğretmen" : "Öğrenci"),
+                  );
+                }).toList(),
               ),
               Padding(
                 padding: EdgeInsets.only(top: 10, bottom: 10),
