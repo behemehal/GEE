@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class PostRate extends StatelessWidget {
+  PostRate(this.upVote, this.downVote);
+
   int upVote;
   int downVote;
 
@@ -12,7 +14,7 @@ class PostRate extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           Text(
-            "7",
+            this.upVote.toString(),
             style: TextStyle(fontSize: 15, color: Colors.green),
           ),
           Icon(
@@ -23,7 +25,7 @@ class PostRate extends StatelessWidget {
           Padding(
             padding: EdgeInsets.only(left: 5),
             child: Text(
-              "2",
+              this.downVote.toString(),
               style: TextStyle(fontSize: 15, color: Colors.red),
             ),
           ),

@@ -27,7 +27,7 @@ void main() async {
             ),
           ),
           enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.all(Radius.circular(8.0)),
+            borderRadius: BorderRadius.all(Radius.circular(5.0)),
             borderSide: BorderSide(
               color: Color.fromRGBO(100, 100, 100, 1),
               width: 0.8,

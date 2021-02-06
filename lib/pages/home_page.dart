@@ -10,21 +10,23 @@ import '../components/home_page_components/ProfileButton.dart';
 import '../components/home_page_components/CurvedPage.dart';
 import '../components/home_page_components/SearchBar.dart';
 import '../components/home_page_components/TopicTitle.dart';
+import '../components/home_page_components/PostRate.dart';
+import '../components/home_page_components/IconLabel.dart';
 
 class HomePage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => HomePageState();
 }
 
-class HomePageState extends State<HomePage> {
+class HomePageState extends State<HomePage> with TickerProviderStateMixin {
   var state = CrossFadeState.showFirst;
   var viewGrid = 0;
+  var activeCategory = 0;
   var index = 0;
 
   @override
   void initState() {
     super.initState();
-    //Sayfa açıldıkdan sonra bura çalışır
   }
 
   List<ToolbarActionChipDart> kategoriler = [
@@ -38,14 +40,14 @@ class HomePageState extends State<HomePage> {
     ToolbarActionChipDart(
       tooltip: "Popüler Ödevler",
       text: "Ödev konularını görüntüle",
-      active: true,
+      active: false,
       icon: Icons.support,
       onPressed: () {},
     ),
     ToolbarActionChipDart(
       tooltip: "Popüler Kampüs",
       text: "Popüler Kampüs Soruları",
-      active: true,
+      active: false,
       icon: Icons.ac_unit,
       onPressed: () {},
     )
@@ -53,6 +55,16 @@ class HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    var onEdit = (ind) {
+      setState(() {
+        for (var kategori in kategoriler) {
+          kategori.active = false;
+        }
+        kategoriler[ind].active = true;
+      });
+      setState(() {});
+    };
+
     return Scaffold(
       appBar: AppBar(
         title: Row(
@@ -114,7 +126,21 @@ class HomePageState extends State<HomePage> {
                         milliseconds: 1,
                       ),
                       crossFadeState: state,
-                      firstChild: Category(kategoriler),
+                      firstChild: Category(
+                        kategoriler
+                            .asMap()
+                            .map((index, element) {
+                              element.onPressed = () {
+                                setState(() {
+                                  activeCategory = index;
+                                });
+                              };
+                              element.active = index == activeCategory;
+                              return MapEntry(index, element.build(context));
+                            })
+                            .values
+                            .toList(),
+                      ),
                       secondChild: SearchBar(state != CrossFadeState.showFirst),
                     )
                   ],
@@ -133,19 +159,20 @@ class HomePageState extends State<HomePage> {
                           ListTile(
                             leading: ProfileButton(() {}),
                             title: const Text('Işık Üniversitesi Hakkında'),
-                            //trailing: ,
+                            trailing: PostRate(7, 3),
                             subtitle: Text(
-                              'Secondary Text',
+                              'Arkadaşlar bilgisayar programcılığı böülümüne bu yıl girdim, sıraya yazarken kampüsün yerini yazmamışım. Acaba bilgisayar programcılığı bölümünün yeri nerede bilen varsa çok iyi olur,',
                               style: TextStyle(color: Colors.black.withOpacity(0.6)),
                             ),
                           ),
+                          IconLabel(Icons.visibility, "100k")
                         ],
                       ),
                     ),
                   ],
                 ),
               ),
-            )
+            ),
           ],
         ),
       ),
