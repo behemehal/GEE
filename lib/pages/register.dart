@@ -3,7 +3,10 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 import 'dart:async';
 import 'dart:convert';
+
 import 'package:gee/pages/login.dart';
+import 'package:gee/pages/home_page.dart';
+import '../utils/appPrefences.dart';
 
 class RegisterPage extends StatefulWidget {
   @override
@@ -121,34 +124,69 @@ class RegisterPageState extends State<RegisterPage> {
                   ),
                   Padding(
                     padding: EdgeInsets.only(top: 20),
-                    child: TextButton(
-                      onPressed: () async {},
-                      child: ElevatedButton.icon(
-                        style: ElevatedButton.styleFrom(primary: Color.fromRGBO(158, 1, 49, 1)),
-                        onPressed: () async {
-                          if (_formKey.currentState.validate()) {
-                            final response = await http.post(
-                              'http://localhost/register',
-                              body: jsonEncode(
-                                <String, dynamic>{
-                                  'mail': kullaniciMailKontrolcusu.text,
-                                  'nameSurname': kullaniciIsimKontrolcusu.text,
-                                  'school': kullaniciOkulKontrolcusu.text,
-                                  'password': kullaniciSifreDogrulayici.text,
-                                  'accountType': accountType
-                                },
-                              ),
-                            );
-                            if (response.statusCode == 200) {
-                              print(jsonDecode(response.body));
-                            } else {
-                              print("");
-                            }
-                          }
-                        },
-                        icon: Icon(Icons.app_registration, size: 10),
-                        label: Text("Kayıt ol"),
-                      ),
+                    child: ElevatedButton.icon(
+                      style: ElevatedButton.styleFrom(primary: Color.fromRGBO(158, 1, 49, 1)),
+                      onPressed: onRequest
+                          ? null
+                          : () async {
+                              if (_formKey.currentState.validate()) {
+                                setState(() {
+                                  onRequest = true;
+                                });
+                                final response = await http.post('https://gonulluesit.herokuapp.com/register',
+                                    body: jsonEncode(
+                                      <String, dynamic>{
+                                        'mail': kullaniciMailKontrolcusu.text,
+                                        'nameSurname': kullaniciIsimKontrolcusu.text,
+                                        'school': kullaniciOkulKontrolcusu.text,
+                                        'password': kullaniciSifreDogrulayici.text,
+                                        'accountType': accountType
+                                      },
+                                    ),
+                                    headers: {
+                                      'Content-type': 'application/json',
+                                      'Accept': 'application/json',
+                                    });
+                                try {
+                                  var data = jsonDecode(response.body);
+                                  if (response.statusCode == 200) {
+                                    appPrefences.setString("mail", kullaniciMailKontrolcusu.text);
+                                    appPrefences.setString("pass", kullaniciSifreKontrolcusu.text);
+                                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                      content: Text(data["code"].toString()),
+                                    ));
+                                    Timer(Duration(seconds: 1), () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) => HomePage(),
+                                        ),
+                                      );
+                                    });
+                                  } else {
+                                    Timer(Duration(seconds: 1), () {
+                                      setState(() {
+                                        onRequest = false;
+                                      });
+                                    });
+                                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                      content: Text(data["code"].toString()),
+                                    ));
+                                  }
+                                } catch (_) {
+                                  Timer(Duration(seconds: 1), () {
+                                    setState(() {
+                                      onRequest = false;
+                                    });
+                                  });
+                                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                    content: Text("Sunucu hatası, bağlantı başarısız"),
+                                  ));
+                                }
+                              }
+                            },
+                      icon: Icon(Icons.app_registration, size: 10),
+                      label: Text("Kayıt ol"),
                     ),
                   ),
                   Padding(
@@ -161,28 +199,21 @@ class RegisterPageState extends State<RegisterPage> {
                       ),
                     ),
                   ),
-                  TextButton(
+                  ElevatedButton.icon(
+                    style: ElevatedButton.styleFrom(primary: Color.fromRGBO(158, 1, 49, 1)),
                     onPressed: onRequest
                         ? null
                         : () {
-                            Navigator.of(context).pop();
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => LoginPage(),
+                              ),
+                            );
                           },
-                    child: ElevatedButton.icon(
-                      style: ElevatedButton.styleFrom(primary: Color.fromRGBO(158, 1, 49, 1)),
-                      onPressed: onRequest
-                          ? null
-                          : () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => LoginPage(),
-                                ),
-                              );
-                            },
-                      icon: Icon(Icons.backspace, size: 10),
-                      label: Text("Mevcut Hesaba Giriş Yap"),
-                    ),
-                  )
+                    icon: Icon(Icons.backspace, size: 10),
+                    label: Text("Mevcut Hesaba Giriş Yap"),
+                  ),
                 ],
               ),
             ),

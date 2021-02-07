@@ -8,6 +8,7 @@ import '../../pages/profil.dart';
 
 class HomePost extends StatelessWidget {
   HomePost(
+    this.mail,
     this.title,
     this.description,
     this.viewCount,
@@ -19,6 +20,7 @@ class HomePost extends StatelessWidget {
     this.postPicURL,
   });
 
+  String mail;
   String title;
   String description;
   String viewCount;
@@ -35,25 +37,18 @@ class HomePost extends StatelessWidget {
       clipBehavior: Clip.antiAlias,
       child: Column(
         children: [
-          if (this.postPicURL != null)
+          if (this.postPicURL != "" && this.postPicURL != null)
             Padding(
               padding: EdgeInsets.only(bottom: 10),
               child: Image.network(this.postPicURL),
             ),
           ListTile(
-            leading: ProfileButton(
-              () => Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => ProfilPage(false, "Test"),
-                ),
-              ),
-            ),
+            leading: ProfileButton(this.mail, false),
             title: Text(
               this.title,
               style: TextStyle(fontFamily: "Montserrat"),
             ),
-            trailing: PostRate(7, 3),
+            trailing: PostRate(this.upVote, this.downVote),
             subtitle: Padding(
               padding: EdgeInsets.only(top: 5),
               child: MarkdownFormatter(this.description),

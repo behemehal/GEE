@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:gee/pages/post_page.dart';
 
+import './utils/appPrefences.dart';
+
 //Sayfalar
 import 'pages/main_splash.dart';
 import 'pages/home_page.dart';
@@ -9,12 +11,13 @@ import './components/login_components/imagepicker.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  //var languageRawJSON = await rootBundle.loadString("assets/pictures/icon.png");
+  await AppPrefences().init();
+
   runApp(
     MaterialApp(
-      title: 'Flutter Demo',
+      title: 'GEE',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primaryColor: Color.fromRGBO(130, 8, 41, 1.0),
         inputDecorationTheme: InputDecorationTheme(
           labelStyle: TextStyle(
             color: Color.fromRGBO(100, 100, 100, 1),
@@ -40,7 +43,7 @@ void main() async {
           cursorColor: Color.fromRGBO(100, 100, 100, 1),
         ),
       ),
-      home: PostPage("t"),
+      home: SplashScreen(),
     ),
   );
 }
