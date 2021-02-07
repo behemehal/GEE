@@ -62,6 +62,12 @@ class ProfilPageState extends State<ProfilPage> {
       appBar: AppBar(
         title: Text(""),
         actions: [
+          if (this.edit)
+            IconButton(
+                icon: Icon(Icons.logout),
+                onPressed: () {
+                  appPrefences.clear();
+                }),
           if (!this.edit)
             TextButton(
               onPressed: () async {
@@ -282,60 +288,6 @@ class ProfilPageState extends State<ProfilPage> {
               );
             }
           }),
-      /*
-      drawer: Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: <Widget>[
-            DrawerHeader(
-                decoration: BoxDecoration(color: Colors.blue),
-                child: Column(
-                  children: <Widget>[
-                    Flexible(
-                      child: Container(
-                        width: 100,
-                        height: 100,
-                        margin: EdgeInsets.only(bottom: 5),
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          image: DecorationImage(
-                            image: NetworkImage("https://i.hizliresim.com/QCpifz.png"),
-                          ),
-                        ),
-                      ),
-                    ),
-                    Text(
-                      "Oğuzhan Saday",
-                      style: TextStyle(fontSize: 15.0, fontWeight: FontWeight.w500, color: Colors.white),
-                    ),
-                  ],
-                )),
-            ListTile(
-              title: Text('Ayarlar'),
-              trailing: Icon(Icons.settings),
-              onTap: () {},
-            ),
-            ListTile(
-              title: Text('Kaydedilenler'),
-              trailing: Icon(Icons.bookmark),
-              onTap: () {},
-            ),
-            ListTile(
-              title: Text('Çıkış Yap'),
-              trailing: Icon(Icons.logout),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => HomePage(),
-                  ),
-                );
-              },
-            ),
-          ],
-        ),
-      ),
-      */
     );
   }
 }

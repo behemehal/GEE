@@ -267,16 +267,16 @@ class PostPageState extends State<PostPage> {
                                           ),
                                         ),
                                         Container(
+                                          height: 40,
+                                          padding: EdgeInsets.only(bottom: 10),
                                           margin: EdgeInsets.only(left: 10, right: 10),
-                                          child: Row(
-                                            children: [
-                                              TextField(
-                                                decoration: InputDecoration(
-                                                  hintText: "Bir yorum ekle",
-                                                ),
-                                              ),
-                                              TextButton(child: Text("Icons.send"), onPressed: () {})
-                                            ],
+                                          child: TextField(
+                                            onSubmitted: (t) {
+                                              print("teateaeataeteat");
+                                            },
+                                            decoration: InputDecoration(
+                                              hintText: "Bir yorum ekle",
+                                            ),
                                           ),
                                         )
                                       ],
