@@ -308,6 +308,7 @@ class PostPageState extends State<PostPage> {
                                       try {
                                         var data = jsonDecode(response.body);
                                         if (response.statusCode == 200) {
+                                          commentController.text = "";
                                           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                                             content: Text(data["code"]),
                                           ));
