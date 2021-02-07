@@ -156,7 +156,7 @@ class RegisterPageState extends State<RegisterPage> {
                                       content: Text(data["code"].toString()),
                                     ));
                                     Timer(Duration(seconds: 1), () {
-                                      Navigator.push(
+                                      Navigator.pushReplacement(
                                         context,
                                         MaterialPageRoute(
                                           builder: (context) => HomePage(),

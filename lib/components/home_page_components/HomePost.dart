@@ -4,6 +4,7 @@ import './PostRate.dart';
 import './IconLabel.dart';
 import './ProfileButton.dart';
 import '../../utils/markdown_formatter.dart';
+import '../../utils/appPrefences.dart';
 import '../../pages/profil.dart';
 
 class HomePost extends StatelessWidget {
@@ -40,10 +41,15 @@ class HomePost extends StatelessWidget {
           if (this.postPicURL != "" && this.postPicURL != null)
             Padding(
               padding: EdgeInsets.only(bottom: 10),
-              child: Image.network(this.postPicURL),
+              child: Image.network(
+                this.postPicURL,
+                errorBuilder: (BuildContext context, Object exception, StackTrace stackTrace) {
+                  return Text("assets/pictures/question.png");
+                },
+              ),
             ),
           ListTile(
-            leading: ProfileButton(this.mail, false),
+            leading: ProfileButton(this.mail, this.mail == appPrefences.getString("mail") ? true : false),
             title: Text(
               this.title,
               style: TextStyle(fontFamily: "Montserrat"),

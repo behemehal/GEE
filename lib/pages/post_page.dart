@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:gee/components/home_page_components/ProfileButton.dart';
-import 'package:gee/pages/post_page1.dart';
 import 'package:gee/utils/markdown_formatter.dart';
 
 class PostPage extends StatefulWidget {
