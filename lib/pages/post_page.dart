@@ -21,6 +21,8 @@ class PostPageState extends State<PostPage> {
   String id;
   String mail;
 
+  TextEditingController commentController = TextEditingController();
+
   bool upVoted = false;
   bool downVoted = false;
   bool userPost = false;
@@ -283,6 +285,53 @@ class PostPageState extends State<PostPage> {
                                       ),
                                     ),
                               ],
+                            ),
+                            Card(
+                              child: Column(
+                                children: [
+                                  TextField(
+                                    controller: commentController,
+                                    onSubmitted: (e) async {
+                                      final response = await http.post('http://localhost/addComment',
+                                          body: jsonEncode(
+                                            <String, dynamic>{
+                                              'mail': appPrefences.getString("mail"),
+                                              'password': appPrefences.getString("pass"),
+                                              'content': commentController.text,
+                                              'id': this.id,
+                                            },
+                                          ),
+                                          headers: {
+                                            'Content-type': 'application/json',
+                                            'Accept': 'application/json',
+                                          });
+                                      try {
+                                        var data = jsonDecode(response.body);
+                                        if (response.statusCode == 200) {
+                                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                            content: Text(data["code"]),
+                                          ));
+                                          setState(() {});
+                                        } else {
+                                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                            content: Text(data["code"]),
+                                          ));
+                                        }
+                                      } catch (_) {
+                                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                          content: Text("Yorum gönderilmedi"),
+                                        ));
+                                      }
+                                    },
+                                    decoration: InputDecoration(
+                                      hintText: "Yorum ekle",
+                                      enabledBorder: InputBorder.none,
+                                      focusedBorder: InputBorder.none,
+                                      border: InputBorder.none,
+                                    ),
+                                  )
+                                ],
+                              ),
                             )
                           ],
                         ),
