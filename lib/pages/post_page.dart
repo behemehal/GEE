@@ -265,7 +265,7 @@ class PostPageState extends State<PostPage> {
                                             'Bu gönderide yorum yok',
                                             textAlign: TextAlign.center,
                                           ),
-                                        )
+                                        ),
                                       ],
                                     ),
                                   )

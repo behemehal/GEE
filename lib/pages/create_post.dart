@@ -129,12 +129,6 @@ class CreatePostState extends State<CreatePost> {
                 Padding(
                   padding: EdgeInsets.only(bottom: 10, top: 10),
                   child: TextFormField(
-                    validator: (value) {
-                      if (value.isEmpty) {
-                        return 'Burası boş bırakılamaz';
-                      }
-                      return null;
-                    },
                     controller: kapakUrl,
                     autocorrect: false,
                     decoration: InputDecoration(
