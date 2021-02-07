@@ -14,13 +14,15 @@ class SearchBar extends StatelessWidget {
             bottom: 3.0,
           ),
           child: TextField(
-            enabled: this.enabled, // 
+            enabled: this.enabled, //
             cursorColor: Colors.white,
             autofocus: false,
             style: TextStyle(
               color: Colors.white,
             ),
             decoration: InputDecoration(
+              enabledBorder: InputBorder.none,
+              focusedBorder: InputBorder.none,
               helperStyle: TextStyle(
                 color: Colors.white,
               ),

@@ -28,7 +28,7 @@ class StateChanger extends StatelessWidget {
               3.0,
             ),
             child: Icon(
-              this.state ? Icons.search : Icons.cancel_presentation,
+              this.state ? Icons.search : Icons.clear,
               size: 25,
               color: Color.fromRGBO(130, 8, 41, 1.0),
             ),
