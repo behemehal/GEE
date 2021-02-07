@@ -266,6 +266,19 @@ class PostPageState extends State<PostPage> {
                                             textAlign: TextAlign.center,
                                           ),
                                         ),
+                                        Container(
+                                          margin: EdgeInsets.only(left: 10, right: 10),
+                                          child: Row(
+                                            children: [
+                                              TextField(
+                                                decoration: InputDecoration(
+                                                  hintText: "Bir yorum ekle",
+                                                ),
+                                              ),
+                                              TextButton(child: Text("Icons.send"), onPressed: () {})
+                                            ],
+                                          ),
+                                        )
                                       ],
                                     ),
                                   )
