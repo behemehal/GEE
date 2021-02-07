@@ -2,10 +2,11 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:gee/pages/home_page.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'register.dart';
+import 'package:gee/utils/appPrefences.dart';
 import 'package:http/http.dart' as http;
+
 import 'home_page.dart';
+import 'register.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -15,6 +16,7 @@ class LoginPage extends StatefulWidget {
 class LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
 
+  bool onRequest = false;
   TextEditingController kullaniciMailKontrolcusu = TextEditingController();
   TextEditingController kullaniciSifreKontrolcusu = TextEditingController();
 
@@ -78,35 +80,62 @@ class LoginPageState extends State<LoginPage> {
                   ),
                   ElevatedButton.icon(
                     style: ElevatedButton.styleFrom(primary: Color.fromRGBO(158, 1, 49, 1)),
-                    onPressed: () async {
-                      if (_formKey.currentState.validate()) {
-                        final response = await http.post(
-                          'http://localhost/login',
-                          body: jsonEncode(
-                            <String, dynamic>{
-                              'mail': kullaniciMailKontrolcusu.text,
-                              'password': kullaniciSifreKontrolcusu.text,
-                            },
-                          ),
-                        );
-                        try {
-                          var data = jsonDecode(response.body);
-                          if (response.statusCode == 200) {
-                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                              content: Text(data["code"].toString()),
-                            ));
-                          } else {
-                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                              content: Text(data["code"].toString()),
-                            ));
-                          }
-                        } catch (_) {
-                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                            content: Text("Sunucu hatası, bağlantı başarısız"),
-                          ));
-                        }
-                      }
-                      /*
+                    onPressed: onRequest
+                        ? null
+                        : () async {
+                            if (_formKey.currentState.validate()) {
+                              setState(() {
+                                onRequest = true;
+                              });
+                              final response = await http.post('https://gonulluesit.herokuapp.com/login',
+                                  body: jsonEncode(
+                                    <String, dynamic>{
+                                      'mail': kullaniciMailKontrolcusu.text,
+                                      'password': kullaniciSifreKontrolcusu.text,
+                                    },
+                                  ),
+                                  headers: {
+                                    'Content-type': 'application/json',
+                                    'Accept': 'application/json',
+                                  });
+                              try {
+                                var data = jsonDecode(response.body);
+                                if (response.statusCode == 200) {
+                                  appPrefences.setString("mail", kullaniciMailKontrolcusu.text);
+                                  appPrefences.setString("pass", kullaniciSifreKontrolcusu.text);
+                                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                    content: Text(data["code"].toString()),
+                                  ));
+                                  Timer(Duration(seconds: 1), () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => HomePage(),
+                                      ),
+                                    );
+                                  });
+                                } else {
+                                  Timer(Duration(seconds: 1), () {
+                                    setState(() {
+                                      onRequest = false;
+                                    });
+                                  });
+                                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                    content: Text(data["code"].toString()),
+                                  ));
+                                }
+                              } catch (_) {
+                                Timer(Duration(seconds: 1), () {
+                                  setState(() {
+                                    onRequest = false;
+                                  });
+                                });
+                                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                  content: Text("Sunucu hatası, bağlantı başarısız"),
+                                ));
+                              }
+                            }
+                            /*
                       Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -114,7 +143,7 @@ class LoginPageState extends State<LoginPage> {
                         ),
                       );
                       */
-                    },
+                          },
                     icon: Icon(Icons.login, size: 12),
                     label: Text("Giriş Yap", style: TextStyle(fontSize: 12.0, color: Colors.white)),
                   ),
@@ -130,14 +159,16 @@ class LoginPageState extends State<LoginPage> {
                   ),
                   ElevatedButton.icon(
                     style: ElevatedButton.styleFrom(primary: Color.fromRGBO(158, 1, 49, 1)),
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => RegisterPage(),
-                        ),
-                      );
-                    },
+                    onPressed: onRequest
+                        ? null
+                        : () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => RegisterPage(),
+                              ),
+                            );
+                          },
                     icon: Icon(Icons.app_registration, size: 12),
                     label: Text("Kayıt ol", style: TextStyle(fontSize: 12.0, color: Colors.white)),
                   ),

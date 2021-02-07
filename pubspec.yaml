@@ -23,6 +23,7 @@ flutter:
     - assets/pictures/user.png
     - assets/pictures/campus.png
     - assets/pictures/question.png
+    - assets/pictures/user_background.jpg
   fonts:
     - family: Montserrat
       fonts:

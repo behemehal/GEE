@@ -69,14 +69,7 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
       appBar: AppBar(
         title: Row(
           children: [
-            ProfileButton(() {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => ProfilPage(true, "test"),
-                ),
-              );
-            }),
+            ProfileButton("ahmetcan@testmail.com", true),
             Padding(
               padding: EdgeInsets.only(left: 10),
               child: Text(
@@ -140,20 +133,20 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
                       ),
                       crossFadeState: state,
                       firstChild: Category(
-                        kategoriler
-                            .asMap()
-                            .map((index, element) {
-                              element.onPressed = () {
-                                setState(() {
-                                  activeCategory = index;
-                                });
-                              };
-                              element.active = index == activeCategory;
-                              return MapEntry(index, element.build(context));
-                            })
-                            .values
-                            .toList(),
-                      ),
+                          kategoriler
+                              .asMap()
+                              .map((index, element) {
+                                element.onPressed = () {
+                                  setState(() {
+                                    activeCategory = index;
+                                  });
+                                };
+                                element.active = index == activeCategory;
+                                return MapEntry(index, element.build(context));
+                              })
+                              .values
+                              .toList(),
+                          71),
                       secondChild: SearchBar(state != CrossFadeState.showFirst),
                     )
                   ],
@@ -164,8 +157,10 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
               SingleChildScrollView(
                 child: Column(
                   children: [
+                    /*
                     TopicTitle(viewGrid),
                     HomePost(
+                      "ahmetcan@testmail.com",
                       "Işık Üniversitesi Hakkında",
                       "**Arkadaşlar** bilgisayar _programcılığı_ böülümüne bu yıl girdim, sıraya yazarken kampüsün yerini yazmamışım. Acaba bilgisayar programcılığı bölümünün yeri nerede bilen varsa çok iyi olur",
                       "100K",
@@ -176,26 +171,7 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
                       "",
                       postPicURL: "https://i.ytimg.com/vi/sLlY_iVWXlA/maxresdefault.jpg",
                     ),
-                    HomePost(
-                      "Bilgisayar Programcılığı Bölümü",
-                      "Merhaba hangi **derslerin** olduğu hakkında bilgi almak _isterim_?",
-                      "97K",
-                      "134",
-                      false,
-                      "9",
-                      "1",
-                      "",
-                    ),
-                    HomePost(
-                      "Bilgisayar Programcılığı Bölümü",
-                      "Merhaba hangi **derslerin** olduğu hakkında bilgi almak _isterim_?",
-                      "100K",
-                      "39",
-                      false,
-                      "9",
-                      "1",
-                      "",
-                    )
+                    */
                   ],
                 ),
               ),

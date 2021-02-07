@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:gee/components/home_page_components/Category.dart';
+
 import 'package:gee/pages/about.dart';
+
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 
 import '../pages/profil.dart';
 import '../pages/create_post.dart';
@@ -12,6 +15,9 @@ import '../components/home_page_components/CurvedPage.dart';
 import '../components/home_page_components/SearchBar.dart';
 import '../components/home_page_components/TopicTitle.dart';
 import '../components/home_page_components/HomePost.dart';
+import '../components/home_page_components/Category.dart';
+
+import '../utils/appPrefences.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -38,20 +44,89 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
       onPressed: () {},
     ),
     ToolbarActionChipDart(
-      tooltip: "Popüler Ödevler",
-      text: "Ödev konularını görüntüle",
+      tooltip: "Ödev Yardım",
+      text: "Ödev Yardım",
       active: false,
       icon: Icons.support,
       onPressed: () {},
     ),
     ToolbarActionChipDart(
-      tooltip: "Popüler Kampüs",
-      text: "Popüler Kampüs Soruları",
+      tooltip: "Kampüs Hakkında",
+      text: "Kampüs Hakkında",
       active: false,
-      icon: Icons.ac_unit,
+      icon: Icons.home,
+      onPressed: () {},
+    ),
+    ToolbarActionChipDart(
+      tooltip: "Bölüm Hakkında",
+      text: "Bölüm Hakkında",
+      active: false,
+      icon: Icons.question_answer,
+      onPressed: () {},
+    ),
+    ToolbarActionChipDart(
+      tooltip: "Sohbet",
+      text: "Sohbet",
+      active: false,
+      icon: Icons.mail,
       onPressed: () {},
     )
   ];
+
+  Future<Widget> loadPosts() {
+    return Future.sync(() async {
+      final response = await http.post('https://gonulluesit.herokuapp.com/getPosts',
+          body: jsonEncode(
+            <String, dynamic>{"category": activeCategory == 0 ? 0 : activeCategory - 1, "popular": activeCategory == 0},
+          ),
+          headers: {
+            'Content-type': 'application/json',
+            'Accept': 'application/json',
+          });
+      try {
+        var data = jsonDecode(response.body);
+        if (response.statusCode == 200) {
+          var posts = data["data"];
+          return Column(
+            children: [
+              TopicTitle(kategoriler[activeCategory].text),
+              if (posts.length == 0)
+                Padding(
+                  padding: EdgeInsets.all(20),
+                  child: Text("Gösterilecek gönderi bulunamadı"),
+                )
+              else
+                for (var pos in posts)
+                  HomePost(
+                    pos["mail"].toString(),
+                    pos["title"],
+                    pos["detail"],
+                    pos["viewCount"].toString(),
+                    pos["comments"].length.toString(),
+                    pos["comments"].length != 0,
+                    pos["upvote"].length.toString(),
+                    pos["downvote"].length.toString(),
+                    "",
+                    postPicURL: pos["picUrl"],
+                  )
+            ],
+          );
+        } else {
+          return Column(
+            children: [
+              TopicTitle("Yükleme Başarısız"),
+            ],
+          );
+        }
+      } catch (_) {
+        return Column(
+          children: [
+            TopicTitle("Yükleme Başarısız"),
+          ],
+        );
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -68,14 +143,7 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
         ],
         title: Row(
           children: [
-            ProfileButton(() {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => ProfilPage(true, "test"),
-                ),
-              );
-            }),
+            ProfileButton(appPrefences.getString("mail"), true),
             Padding(
               padding: EdgeInsets.only(left: 10),
               child: Text(
@@ -138,20 +206,20 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
                       ),
                       crossFadeState: state,
                       firstChild: Category(
-                        kategoriler
-                            .asMap()
-                            .map((index, element) {
-                              element.onPressed = () {
-                                setState(() {
-                                  activeCategory = index;
-                                });
-                              };
-                              element.active = index == activeCategory;
-                              return MapEntry(index, element.build(context));
-                            })
-                            .values
-                            .toList(),
-                      ),
+                          kategoriler
+                              .asMap()
+                              .map((index, element) {
+                                element.onPressed = () {
+                                  setState(() {
+                                    activeCategory = index;
+                                  });
+                                };
+                                element.active = index == activeCategory;
+                                return MapEntry(index, element.build(context));
+                              })
+                              .values
+                              .toList(),
+                          71),
                       secondChild: SearchBar(state != CrossFadeState.showFirst),
                     )
                   ],
@@ -160,41 +228,17 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
             ),
             CurvedPage(
               SingleChildScrollView(
-                child: Column(
-                  children: [
-                    TopicTitle(viewGrid),
-                    HomePost(
-                      "Işık Üniversitesi Hakkında",
-                      "**Arkadaşlar** bilgisayar _programcılığı_ böülümüne bu yıl girdim, sıraya yazarken kampüsün yerini yazmamışım. Acaba bilgisayar programcılığı bölümünün yeri nerede bilen varsa çok iyi olur",
-                      "100K",
-                      "39",
-                      true,
-                      "7",
-                      "3",
-                      "",
-                      postPicURL: "https://i.ytimg.com/vi/sLlY_iVWXlA/maxresdefault.jpg",
-                    ),
-                    HomePost(
-                      "Bilgisayar Programcılığı Bölümü",
-                      "Merhaba hangi **derslerin** olduğu hakkında bilgi almak _isterim_?",
-                      "97K",
-                      "134",
-                      false,
-                      "9",
-                      "1",
-                      "",
-                    ),
-                    HomePost(
-                      "Bilgisayar Programcılığı Bölümü",
-                      "Merhaba hangi **derslerin** olduğu hakkında bilgi almak _isterim_?",
-                      "100K",
-                      "39",
-                      false,
-                      "9",
-                      "1",
-                      "",
-                    )
-                  ],
+                child: FutureBuilder<Widget>(
+                  future: loadPosts(),
+                  builder: (BuildContext context, AsyncSnapshot<Widget> snapshot) {
+                    if (snapshot.hasData) {
+                      return snapshot.data;
+                    } else {
+                      return Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    }
+                  },
                 ),
               ),
             ),
@@ -204,3 +248,7 @@ class HomePageState extends State<HomePage> with TickerProviderStateMixin {
     );
   }
 }
+
+/*
+
+*/
