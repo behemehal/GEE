@@ -21,8 +21,10 @@ class ProfilPage extends StatefulWidget {
 class ProfilPageState extends State<ProfilPage> {
   ProfilPageState(this.edit, this.id);
   final bool edit;
-  String detail;
   final String id;
+
+  String detail;
+  bool following = false;
 
   TextEditingController userDetail = TextEditingController();
 
@@ -39,6 +41,11 @@ class ProfilPageState extends State<ProfilPage> {
       try {
         var data = jsonDecode(response.body);
         if (response.statusCode == 200) {
+          if (!this.edit) {
+            setState(() {
+              following = data["data"]["followers"].contains(appPrefences.getString("mail"));
+            });
+          }
           userDetail.text = data["data"]["detail"];
           return data;
         } else {
@@ -55,10 +62,38 @@ class ProfilPageState extends State<ProfilPage> {
       appBar: AppBar(
         title: Text(""),
         actions: [
-          if (this.edit)
+          if (!this.edit)
             TextButton(
-              onPressed: () {},
-              child: Text("Takip Et"),
+              onPressed: () async {
+                final response = await http.post('http://localhost/followProfile',
+                    body: jsonEncode(
+                      <String, dynamic>{
+                        "target": this.id,
+                        "mail": appPrefences.getString("mail"),
+                        "password": appPrefences.getString("pass"),
+                      },
+                    ),
+                    headers: {
+                      'Content-type': 'application/json',
+                      'Accept': 'application/json',
+                    });
+                try {
+                  var data = jsonDecode(response.body);
+                  if (response.statusCode != 200) {
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      content: Text("Takip etme başarısız"),
+                    ));
+                    setState(() {
+                      following = !following;
+                    });
+                  }
+                } catch (_) {
+                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                    content: Text("Takip etme başarısız"),
+                  ));
+                }
+              },
+              child: Text(following ? "Takibi Bırak" : "Takip Et"),
             )
         ],
       ),

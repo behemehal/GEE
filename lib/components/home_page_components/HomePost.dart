@@ -4,6 +4,7 @@ import './PostRate.dart';
 import './IconLabel.dart';
 import './ProfileButton.dart';
 import '../../utils/markdown_formatter.dart';
+import '../../utils/appPrefences.dart';
 import '../../pages/profil.dart';
 
 class HomePost extends StatelessWidget {
@@ -48,7 +49,7 @@ class HomePost extends StatelessWidget {
               ),
             ),
           ListTile(
-            leading: ProfileButton(this.mail, false),
+            leading: ProfileButton(this.mail, this.mail == appPrefences.getString("mail") ? true : false),
             title: Text(
               this.title,
               style: TextStyle(fontFamily: "Montserrat"),
