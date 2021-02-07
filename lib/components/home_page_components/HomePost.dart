@@ -40,7 +40,12 @@ class HomePost extends StatelessWidget {
           if (this.postPicURL != "" && this.postPicURL != null)
             Padding(
               padding: EdgeInsets.only(bottom: 10),
-              child: Image.network(this.postPicURL),
+              child: Image.network(
+                this.postPicURL,
+                errorBuilder: (BuildContext context, Object exception, StackTrace stackTrace) {
+                  return Image.asset("assets/pictures/question.png");
+                },
+              ),
             ),
           ListTile(
             leading: ProfileButton(this.mail, false),
