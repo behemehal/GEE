@@ -266,19 +266,6 @@ class PostPageState extends State<PostPage> {
                                             textAlign: TextAlign.center,
                                           ),
                                         ),
-                                        Container(
-                                          height: 40,
-                                          padding: EdgeInsets.only(bottom: 10),
-                                          margin: EdgeInsets.only(left: 10, right: 10),
-                                          child: TextField(
-                                            onSubmitted: (t) {
-                                              print("teateaeataeteat");
-                                            },
-                                            decoration: InputDecoration(
-                                              hintText: "Bir yorum ekle",
-                                            ),
-                                          ),
-                                        )
                                       ],
                                     ),
                                   )
