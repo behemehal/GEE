@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:gee/pages/post_page.dart';
 
 //Sayfalar
 import 'pages/main_splash.dart';
@@ -39,7 +40,7 @@ void main() async {
           cursorColor: Color.fromRGBO(100, 100, 100, 1),
         ),
       ),
-      home: SplashScreen(),
+      home: PostPage("t"),
     ),
   );
 }
