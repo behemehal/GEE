@@ -114,7 +114,7 @@ class PostPageState extends State<PostPage> {
                                   child: Text(
                                     snapshot.data["data"]["title"],
                                     textAlign: TextAlign.start,
-                                    style: TextStyle(fontSize: 30, fontFamily: "MontSerrat"),
+                                    style: TextStyle(fontSize: 22, fontFamily: "MontSerrat"),
                                   ),
                                 ),
                                 MarkdownFormatter(
@@ -247,51 +247,42 @@ class PostPageState extends State<PostPage> {
                         ),
                       ],
                     ),
-                    Row(
-                      children: [
-                        TextFormField(
-                          autocorrect: false,
-                          decoration: InputDecoration(
-                            labelText: 'Kapak fotoğrafı URL',
-                          ),
-                        )
-                      ],
-                    ),
                     Padding(
                       padding: EdgeInsets.only(bottom: 20),
                       child: SingleChildScrollView(
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            SingleChildScrollView(
-                              child: Column(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
+                            Column(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                if (snapshot.data["data"]["comments"].length == 0)
                                   Card(
                                     child: Column(
                                       children: [
-                                        if (snapshot.data["data"]["comments"].length == 0)
-                                          ListTile(
-                                            title: Text(
-                                              'Bu gönderide yorum yok',
-                                              textAlign: TextAlign.center,
-                                            ),
-                                          )
-                                        else
-                                          for (var comment in snapshot.data["data"]["comments"])
-                                            ListTile(
-                                              trailing: ProfileButton(comment["mail"], false),
-                                              title: Text(
-                                                comment["nameSurname"],
-                                                textAlign: TextAlign.center,
-                                              ),
-                                              subtitle: Text(comment["content"]),
-                                            )
+                                        ListTile(
+                                          title: Text(
+                                            'Bu gönderide yorum yok',
+                                            textAlign: TextAlign.center,
+                                          ),
+                                        )
                                       ],
                                     ),
-                                  ),
-                                ],
-                              ),
+                                  )
+                                else
+                                  for (var comment in snapshot.data["data"]["comments"])
+                                    Card(
+                                      child: Column(
+                                        children: [
+                                          ListTile(
+                                            leading: ProfileButton(comment["mail"], false),
+                                            title: Text(comment["nameSurname"]),
+                                            subtitle: Text(comment["content"]),
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                              ],
                             )
                           ],
                         ),
