@@ -65,7 +65,7 @@ class ProfilPageState extends State<ProfilPage> {
           if (!this.edit)
             TextButton(
               onPressed: () async {
-                final response = await http.post('http://localhost/followProfile',
+                final response = await http.post('http://gonulluesit.herokuapp.com/followProfile',
                     body: jsonEncode(
                       <String, dynamic>{
                         "target": this.id,
