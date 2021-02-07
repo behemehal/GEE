@@ -1,13 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:gee/pages/post_page.dart';
-
 import './utils/appPrefences.dart';
-
-//Sayfalar
 import 'pages/main_splash.dart';
-import 'pages/home_page.dart';
-import './components/login_components/imagepicker.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

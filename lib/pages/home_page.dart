@@ -4,8 +4,6 @@ import 'package:gee/pages/about.dart';
 
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-
-import '../pages/profil.dart';
 import '../pages/create_post.dart';
 
 import '../components/home_page_components/StateChanger.dart';

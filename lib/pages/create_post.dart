@@ -1,14 +1,14 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:gee/pages/home_page.dart';
-import 'package:gee/utils/markdown_formatter.dart';
+
 
 import '../components/home_page_components/ActionChip.dart';
 import '../components/home_page_components/Category.dart';
 
 import 'package:http/http.dart' as http;
 import '../utils/appPrefences.dart';
+import '../utils/markdown_formatter.dart';
 
 class CreatePost extends StatefulWidget {
   CreatePost(

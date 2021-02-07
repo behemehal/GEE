@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'ActionChip.dart';
 
 class Category extends StatelessWidget {
   Category(this.kategoriler, this.cut);

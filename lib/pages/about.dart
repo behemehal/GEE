@@ -57,7 +57,7 @@ class AboutPageState extends State<AboutPage> {
                     children: [
                       ListTile(
                         subtitle: Text(
-                          "Bu uygululama öğrencilerin aynı bilgiyi eşit imkanlarla ücretsiz olarak ulaşabilmeleri ve gerektiğinde uzman kişiler ile bağlantı kurabilecekleri bir platfor kurmayı amaçlamaktadır.",
+                          "Bu uygululama öğrencilerin aynı bilgiyi eşit imkanlarla ücretsiz olarak ulaşabilmeleri ve gerektiğinde uzman kişiler ile bağlantı kurabilecekleri bir platform kurmayı amaçlamaktadır.",
                           textAlign: TextAlign.center,
                         ),
                       ),

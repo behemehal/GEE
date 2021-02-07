@@ -3,10 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:gee/utils/appPrefences.dart';
 
 import 'login.dart';
-import 'register.dart';
-import 'profil.dart';
 import 'home_page.dart';
-import 'post_page.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -34,7 +31,7 @@ class SplashScreenState extends State<SplashScreen> with TickerProviderStateMixi
     slideAnimation =
         Tween<Offset>(begin: Offset(0, 1.2), end: Offset(0.0, 0.0)).animate(CurvedAnimation(parent: slideController, curve: Curves.linear));
 
-    Timer(Duration(milliseconds: 650), () {
+    Timer(Duration(seconds: 5), () {
       setState(() {
         logoVisible = true;
       });

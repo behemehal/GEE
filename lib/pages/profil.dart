@@ -84,11 +84,14 @@ class ProfilPageState extends State<ProfilPage> {
                       'Accept': 'application/json',
                     });
                 try {
-                  var data = jsonDecode(response.body);
                   if (response.statusCode != 200) {
                     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                       content: Text("Takip etme başarısız"),
                     ));
+                    setState(() {
+                      following = !following;
+                    });
+                  } else {
                     setState(() {
                       following = !following;
                     });
