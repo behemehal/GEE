@@ -292,7 +292,7 @@ class PostPageState extends State<PostPage> {
                                   TextField(
                                     controller: commentController,
                                     onSubmitted: (e) async {
-                                      final response = await http.post('http://localhost/addComment',
+                                      final response = await http.post('https://gonulluesit.herokuapp.com/addComment',
                                           body: jsonEncode(
                                             <String, dynamic>{
                                               'mail': appPrefences.getString("mail"),
