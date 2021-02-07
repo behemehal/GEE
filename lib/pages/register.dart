@@ -47,7 +47,7 @@ class RegisterPageState extends State<RegisterPage> {
                     ),
                   ),
                   Container(
-                    padding: EdgeInsets.only(top: 50),
+                    padding: EdgeInsets.only(top: 35),
                     margin: EdgeInsets.all(10),
                     child: TextFormField(
                       validator: (value) {
@@ -120,6 +120,32 @@ class RegisterPageState extends State<RegisterPage> {
                       decoration: InputDecoration(
                         labelText: "Şifre Doğrulama",
                       ),
+                    ),
+                  ),
+                  Container(
+                    width: MediaQuery.of(context).size.width,
+                    margin: EdgeInsets.only(left: 10, right: 10),
+                    child: DropdownButton<int>(
+                      value: accountType,
+                      icon: Icon(Icons.arrow_drop_down),
+                      iconSize: 24,
+                      elevation: 16,
+                      style: TextStyle(color: Color.fromRGBO(130, 8, 41, 1.0)),
+                      underline: Container(
+                        height: 2,
+                        color: Color.fromRGBO(130, 8, 41, 1.0),
+                      ),
+                      onChanged: (int newValue) {
+                        setState(() {
+                          accountType = newValue;
+                        });
+                      },
+                      items: <int>[0, 1].map<DropdownMenuItem<int>>((int value) {
+                        return DropdownMenuItem<int>(
+                          value: value,
+                          child: Text(value == 0 ? "Öğrenci" : "Öğretmen"),
+                        );
+                      }).toList(),
                     ),
                   ),
                   Padding(

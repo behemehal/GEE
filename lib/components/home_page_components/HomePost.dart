@@ -5,10 +5,11 @@ import './IconLabel.dart';
 import './ProfileButton.dart';
 import '../../utils/markdown_formatter.dart';
 import '../../utils/appPrefences.dart';
-import '../../pages/profil.dart';
+import '../../pages/post_page.dart';
 
 class HomePost extends StatelessWidget {
   HomePost(
+    this.id,
     this.mail,
     this.title,
     this.description,
@@ -21,6 +22,7 @@ class HomePost extends StatelessWidget {
     this.postPicURL,
   });
 
+  String id;
   String mail;
   String title;
   String description;
@@ -44,15 +46,25 @@ class HomePost extends StatelessWidget {
               child: Image.network(
                 this.postPicURL,
                 errorBuilder: (BuildContext context, Object exception, StackTrace stackTrace) {
-                  return Text("assets/pictures/question.png");
+                  return Image.asset("assets/pictures/non_photo.png");
                 },
               ),
             ),
           ListTile(
             leading: ProfileButton(this.mail, this.mail == appPrefences.getString("mail") ? true : false),
-            title: Text(
-              this.title,
-              style: TextStyle(fontFamily: "Montserrat"),
+            title: InkWell(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => PostPage(this.id, this.mail),
+                  ),
+                );
+              },
+              child: Text(
+                this.title,
+                style: TextStyle(fontFamily: "Montserrat"),
+              ),
             ),
             trailing: PostRate(this.upVote, this.downVote),
             subtitle: Padding(

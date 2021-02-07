@@ -65,6 +65,13 @@ class CreatePostState extends State<CreatePost> {
       active: false,
       icon: Icons.mail,
       onPressed: () {},
+    ),
+    ToolbarActionChipDart(
+      tooltip: "Klüp Etkinlikleri",
+      text: "Klüp Etkinlikleri",
+      active: false,
+      icon: Icons.group,
+      onPressed: () {},
     )
   ];
 
