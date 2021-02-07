@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:gee/utils/appPrefences.dart';
 
 import 'login.dart';
 import 'register.dart';
@@ -110,6 +111,25 @@ class SplashScreenState extends State<SplashScreen> with TickerProviderStateMixi
               AnimatedOpacity(
                 opacity: visible3 ? 1.0 : 0.0,
                 duration: Duration(milliseconds: 700),
+                onEnd: () {
+                  Timer(Duration(seconds: 1), () {
+                    if (appPrefences.containsKey("mail")) {
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => HomePage(),
+                        ),
+                      );
+                    } else {
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => LoginPage(),
+                        ),
+                      );
+                    }
+                  });
+                },
                 child: Container(
                   width: 171,
                   child: Text(
@@ -122,53 +142,6 @@ class SplashScreenState extends State<SplashScreen> with TickerProviderStateMixi
                   ),
                 ),
               ),
-              Padding(
-                padding: EdgeInsets.only(top: 50),
-                child: TextButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => LoginPage(),
-                      ),
-                    );
-                  },
-                  child: Text("Login Sayfasına Git"),
-                ),
-              ),
-              TextButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => RegisterPage(),
-                    ),
-                  );
-                },
-                child: Text("Register Sayfasına Git"),
-              ),
-              TextButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => PostPage("test"),
-                    ),
-                  );
-                },
-                child: Text("Post Sayfasına Git"),
-              ),
-              TextButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => HomePage(),
-                    ),
-                  );
-                },
-                child: Text("Home Sayfası"),
-              )
             ],
           ),
         ),

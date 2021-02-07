@@ -43,7 +43,7 @@ class HomePost extends StatelessWidget {
               child: Image.network(
                 this.postPicURL,
                 errorBuilder: (BuildContext context, Object exception, StackTrace stackTrace) {
-                  return Image.asset("assets/pictures/question.png");
+                  return Text("assets/pictures/question.png");
                 },
               ),
             ),
